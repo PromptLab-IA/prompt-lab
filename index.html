@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptLab - Serviços Digitais</title>
+    <style>
+        :root {
+            --primary: #0086c3;
+            --primary-light: #00b9e3;
+            --background: #061831;
+            --card-bg: rgba(15, 31, 60, 0.7);
+            --text-color: #ffffff;
+            --glow-color: #00d0ff;
+            --whatsapp: #25D366;
+            --item-bg: rgba(30, 46, 75, 0.6);
+            --item-hover: rgba(40, 56, 85, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 134, 195, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 185, 227, 0.1) 0%, transparent 40%);
+            padding: 2rem 0;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .circuit-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .circuit {
+            position: absolute;
+            background: linear-gradient(to bottom, transparent, var(--primary-light));
+            width: 2px;
+            height: 100px;
+            opacity: 0.5;
+            animation: circuit-animation 15s infinite linear;
+            will-change: transform, opacity;
+        }
+
+        @keyframes circuit-animation {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(calc(100vh + 100px));
+            }
+        }
+
+        .node {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            filter: blur(1px);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            width: 320px;
+            height: 320px;
+            filter: drop-shadow(0 0 10px rgba(0, 208, 255, 0.5));
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            box-shadow: 0 0 30px rgba(0, 208, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 208, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 30%;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0.05), transparent);
+            z-index: -1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--primary-light);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .category-description {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+
+        .services-list {
+            list-style: none;
+            flex: 1;
+        }
+
+        .service-item {
+            padding: 0.7rem 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: var(--item-bg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-item:hover {
+            background-color: var(--item-hover);
+            transform: translateX(5px);
+        }
+
+        .service-item::before {
+            content: '•';
+            margin-right: 8px;
+            color: var(--primary-light);
+        }
+
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.8), rgba(37, 211, 102, 0.5));
+            border-radius: 50px;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.7);
+        }
+        
+        @keyframes whatsapp-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+            }
+        }
+        
+        .whatsapp-pulse {
+            animation: whatsapp-pulse 2s infinite ease-in-out;
+        }
+
+        .whatsapp-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 30px rgba(0, 208, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--primary-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 2px rgba(0, 185, 227, 0.25);
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .cancel-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .cancel-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .submit-button {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .submit-button:hover {
+            background-color: var(--primary-light);
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 1.2rem 1rem;
+            }
+            
+            .category-icon {
+                font-size: 1.5rem;
+            }
+            
+            .category-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="circuit-bg" id="circuit-bg"></div>
+        
+        <div class="logo-container">
+            <img src="https://pfst.cf2.poecdn.net/base/image/6fcdc2a78def23ff937e41724b2e6d9893ea60b9e8913f392026f94d81a94275?w=500&h=500" alt="PromptLab Logo" class="logo">
+        </div>
+        
+        <div class="cards-grid" id="cards-grid">
+            <!-- Cards will be dynamically inserted here -->
+        </div>
+        
+        <button class="whatsapp-button whatsapp-pulse" id="contact-button">
+            <span class="whatsapp-icon">📱</span>
+            Não encontrou o que precisa? Fale com a gente!
+        </button>
+    </div>
+    
+    <!-- Modal for user information -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <h3 class="modal-title">Para continuarmos</h3>
+            <div class="form-group">
+                <label for="name-input" class="form-label">Nome*</label>
+                <input type="text" id="name-input" class="form-input" placeholder="Digite seu nome completo">
+            </div>
+            <div class="form-group">
+                <label for="coupon-input" class="form-label">Cupom de Desconto (opcional)</label>
+                <input type="text" id="coupon-input" class="form-input" placeholder="Se possuir um cupom, digite aqui">
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button cancel-button" id="cancel-button">Cancelar</button>
+                <button class="modal-button submit-button" id="submit-button">Conversar com Consultor</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Categories and services data
+        const categoriesData = [
+            {
+                icon: "🧠",
+                title: "Formatação Remota de Computadores e Celulares",
+                description: "Seu aparelho como novo, sem sair de casa.",
+                services: [
+                    "Formatação de computadores",
+                    "Instalação/atualização de programas",
+                    "Treinamento no uso de programas/sistemas",
+                    "Instalação de SSD e memória",
+                    "Consultoria para compra de peças, computadores e celulares",
+                    "Formatação de celulares",
+                    "Desbloqueio de celulares/conta Google",
+                    "Limpeza de arquivos inúteis (vídeos repetidos, Virus e etc.)",
+                    "Backup de fotos e contatos na nuvem",
+                    "Instalação de apps secretos e cofres em seu celular"
+                ]
+            },
+            {
+                icon: "📱",
+                title: "Redes Sociais",
+                description: "Restaure e proteja suas contas com segurança total.",
+                services: [
+                    "Recuperação de conta no Instagram",
+                    "Recuperação de conta no Facebook",
+                    "Recuperação de conta no Google",
+                    "Recuperação de WhatsApp",
+                    "Monitoramento de redes sociais de crianças",
+                    "Análise gratuita do nível de segurança da sua conta",
+                    "Geração de senha impossível de descobrir e autenticação em dois fatores",
+                    "Proteja todas as suas contas em 1 hora",
+                    "Consultoria de cibersegurança para contas empresariais e de influenciadores",
+                    "Criação de artes para Instagram e WhatsApp",
+                    "Mini portfólio ou cardápio digital (PDF/Imagem)",
+                    "Capas de destaque para stories",
+                    "Cartões digitais com QR Code e links (ex: Linktree personalizado)"
+                ]
+            },
+            {
+                icon: "📂",
+                title: "Recuperação de Dados de Computadores e Celulares",
+                description: "Arquivos perdidos? Trazemos de volta com agilidade.",
+                services: [
+                    "Recuperação de arquivos excluídos (planilhas e documentos)",
+                    "Recuperação de fotos, vídeos e mensagens (celular)",
+                    "Recuperação de dados após formatação",
+                    "Restauração de fotos danificadas",
+                    "Conversão de fotos analógicas para digital",
+                    "Criação de vídeos com fotos de parentes falecidos"
+                ]
+            },
+            {
+                icon: "🧠",
+                title: "Consultoria Digital Pessoal",
+                description: "Descomplique sua vida online com soluções práticas, seguras e personalizadas.",
+                services: [
+                    "Auditoria de presença digital (o que aparece no Google sobre você)",
+                    "Criação de identidade digital (email, assinatura, domínio)",
+                    "Limpeza de rastros digitais (exclusão de contas antigas e vazamentos)",
+                    "Reputação online: como melhorar e manter"
+                ]
+            },
+            {
+                icon: "💼",
+                title: "Ferramentas para Pequenos Negócios",
+                description: "Soluções simples e poderosas para seu negócio crescer.",
+                services: [
+                    "Criação de catálogo de produtos em PDF ou site leve",
+                    "Configuração de atendimento automático no WhatsApp",
+                    "Criação de link de pagamento com QR Code (Pix/Cobrança)",
+                    "Sugestão e instalação de apps gratuitos para gestão de vendas",
+                    "Automação de respostas no Instagram e Facebook",
+                    "Mapeamento de processos que estejam gerando gargalo",
+                    "Implementação de melhorias",
+                    "Treinamento de equipes"
+                ]
+            },
+            {
+                icon: "📈",
+                title: "Impulsione Seu Instagram/TikTok",
+                description: "Destaque seu perfil com estratégias testadas e resultados reais.",
+                services: [
+                    "Aumento de seguidores",
+                    "Aumento de curtidas",
+                    "Aumento de visualizações",
+                    "Passo a Passo para monetizar",
+                    "Sugestão de hashtags e horários",
+                    "Criação de cronograma de postagens",
+                    "Edição de bio e destaques com linguagem estratégica",
+                    "Geração de ideias de conteúdo com IA (calendário temático)"
+                ]
+            },
+            {
+                icon: "🤖",
+                title: "Inteligência Artificial",
+                description: "Treinamentos práticos para dominar a IA no seu dia a dia.",
+                services: [
+                    "Treinamento para alunos",
+                    "Treinamento para professores",
+                    "Treinamento para influenciadores"
+                ]
+            },
+            {
+                icon: "📄",
+                title: "Currículos Personalizados para Cada Vaga",
+                description: "Aumente suas chances com um currículo pronto para ser escolhido.",
+                services: [
+                    "Criação ou avaliação de currículo",
+                    "Currículo compatível com a IA da Gupy",
+                    "Currículo compatível com a IA do LinkedIn",
+                    "IA que adapta seu currículo para qualquer vaga"
+                ]
+            },
+            {
+                icon: "👥",
+                title: "Gestão e Análise de Candidatos para Empresas",
+                description: "Processo seletivo mais rápido e inteligente.",
+                services: [
+                    "Triagem de currículos",
+                    "Entrevistas preliminares",
+                    "Relatórios de compatibilidade com o perfil da vaga"
+                ]
+            },
+            {
+                icon: "🧾",
+                title: "Documentação Rápida e Profissional",
+                description: "Documentos prontos com aparência profissional em tempo recorde.",
+                services: [
+                    "Criação de contratos simples (freelancer, prestação de serviço)",
+                    "Montagem de propostas comerciais em PDF",
+                    "Geração de declarações, recibos e termos",
+                    "Currículo em formato internacional (com carta de apresentação)",
+                    "Formulários automáticos (Google Forms, Typeform)"
+                ]
+            },
+            {
+                icon: "🌐",
+                title: "Criação de Sites e Aplicativos",
+                description: "Soluções digitais para expandir seu alcance.",
+                services: [
+                    "Desenvolvimento de sites pessoais e corporativos",
+                    "Criação de aplicativos de agendamentos, delivery, atendimento online e mais"
+                ]
+            },
+            {
+                icon: "🤖",
+                title: "Criação de Chatbots, Agentes de IA e Automações",
+                description: "Automatize processos e melhore seu atendimento.",
+                services: [
+                    "Desenvolvimento de chatbots para atendimento",
+                    "Criação de agentes de IA personalizados para qualquer necessidade",
+                    "Automação de postagens em redes sociais",
+                    "Automação residencial",
+                    "Automação de tarefas repetitivas"
+                ]
+            },
+            {
+                icon: "🎓",
+                title: "Criação e Gestão de Cursos",
+                description: "Transforme seu conhecimento em conteúdo educacional estruturado.",
+                services: [
+                    "Planejamento de cursos online",
+                    "Produção de materiais didáticos",
+                    "Gestão de plataformas de ensino"
+                ]
+            },
+            {
+                icon: "🎙️",
+                title: "Narrações, Músicas e Anúncios",
+                description: "Produções de áudio profissionais para qualquer projeto.",
+                services: [
+                    "Clonagem de qualquer voz",
+                    "Narração para vídeos e anúncios comerciais",
+                    "Produção de jingles e músicas",
+                    "Criação de scripts para anúncios"
+                ]
+            },
+            {
+                icon: "🎯",
+                title: "Cursos e Concursos",
+                description: "Preparação eficiente para provas e exames importantes.",
+                services: [
+                    "Material para concursos em vídeo aula e PDF",
+                    "Mapas mentais estruturados para cada material",
+                    "Macetes/dicas de português e matemática",
+                    "Criação de Mapas mentais e Podcast personalizados para seus estudos",
+                    "Material focado no ENEM",
+                    "Material focado no CNU 2025",
+                    "Carteira de Estudante válida em todo país",
+                    "Treinamento para aprender a usar IA nos estudos"
+                ]
+            },
+            {
+                icon: "📚",
+                title: "Criação de Artigos Acadêmicos, TCCs, Revisões e ENEM",
+                description: "Suporte acadêmico profissional para todos os níveis.",
+                services: [
+                    "Redação de artigos acadêmicos",
+                    "Redação nota 1000 no ENEM",
+                    "Orientação para TCC",
+                    "Revisão e formatação de textos, TCCs e monografias"
+                ]
+            },
+            {
+                icon: "🎬",
+                title: "Serviços de Streaming",
+                description: "Acesso às melhores plataformas de entretenimento.",
+                services: [
+                    "Netflix",
+                    "Amazon",
+                    "MAX",
+                    "Disney Plus",
+                    "Globoplay",
+                    "Premiere",
+                    "Spotify",
+                    "YouTube Premium"
+                ]
+            },
+            {
+                icon: "📲 🔞",
+                title: "Aplicativos Premium",
+                description: "Desbloqueie recursos avançados dos melhores aplicativos.",
+                services: [
+                    "CapCut Pro",
+                    "Canva Pro",
+                    "TikTok Premium",
+                    "Instagram Premium",
+                    "WhatsApp Premium"
+                ]
+            },
+            {
+                icon: "🎲",
+                title: "Loteria 🔞",
+                description: "Aumente suas chances com estratégias e grupos especializados.",
+                services: [
+                    "Grupo VIP com apostas da Mega-Sena",
+                    "Grupo VIP com apostas da Lotofácil",
+                    "Plataforma de bolões Caixa com mais de 11 mil ganhadores"
+                ]
+            },
+            {
+                icon: "👑",
+                title: "Grupos VIP 🔞",
+                description: "Acesso exclusivo a conteúdos e comunidades especializadas.",
+                services: [
+                    "OnlyFans e Privacy",
+                    "Renda Extra",
+                    "Hackers",
+                    "Sala de sinais do 'Tigrinho'"
+                ]
+            },
+            {
+                icon: "🔐",
+                title: "Gestão de Plataforma 🔞(OnlyFans e Privacy)",
+                description: "Suporte profissional para criadores de conteúdo adulto.",
+                services: [
+                    "Configuração de perfis OnlyFans",
+                    "Estratégias para produzir conteúdo sem aparecer",
+                    "Gestão de conteúdo e publicações"
+                ]
+            }            
+        ];
+        
+        // Generate circuit elements with performance optimization
+        function generateCircuits() {
+            const circuitBg = document.getElementById('circuit-bg');
+            // Calculate number of circuits based on screen width, but limit maximum
+            const circuitCount = Math.min(20, Math.floor(window.innerWidth / 40));
+            
+            circuitBg.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < circuitCount; i++) {
+                const circuit = document.createElement('div');
+                circuit.className = 'circuit';
+                
+                const startPos = Math.random() * 100;
+                circuit.style.left = `${startPos}%`;
+                circuit.style.animationDelay = `${Math.random() * 15}s`;
+                circuit.style.height = `${50 + Math.random() * 150}px`;
+                
+                // Add nodes (limit to improve performance)
+                const nodeCount = Math.floor(Math.random() * 2) + 1;
+                for (let j = 0; j < nodeCount; j++) {
+                    const node = document.createElement('div');
+                    node.className = 'node';
+                    node.style.top = `${(j + 1) * (100 / (nodeCount + 1))}%`;
+                    node.style.left = '0';
+                    node.style.transform = 'translate(-50%, -50%)';
+                    circuit.appendChild(node);
+                }
+                
+                fragment.appendChild(circuit);
+            }
+            
+            circuitBg.appendChild(fragment);
+        }
+        
+        // Generate cards for services
+        function generateCards() {
+            const cardsGrid = document.getElementById('cards-grid');
+            
+            categoriesData.forEach((category, categoryIndex) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                let servicesHTML = '';
+                category.services.forEach((service, serviceIndex) => {
+                    servicesHTML += `
+                        <div class="service-item" data-category="${categoryIndex}" data-service="${serviceIndex}">
+                            ${service}
+                        </div>
+                    `;
+                });
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="category-icon">${category.icon}</div>
+                        <div class="category-title">${category.title}</div>
+                    </div>
+                    <div class="category-description">${category.description}</div>
+                    <div class="services-list">
+                        ${servicesHTML}
+                    </div>
+                `;
+                
+                cardsGrid.appendChild(card);
+            });
+            
+            // Add event listeners for service items
+            const serviceItems = document.querySelectorAll('.service-item');
+            serviceItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const categoryIndex = item.dataset.category;
+                    const serviceIndex = item.dataset.service;
+                    const categoryName = categoriesData[categoryIndex].title;
+                    const serviceName = categoriesData[categoryIndex].services[serviceIndex];
+                    
+                    showModal(categoryName, serviceName);
+                });
+            });
+        }
+        
+        // Modal handling
+        const modalOverlay = document.getElementById('modal-overlay');
+        const nameInput = document.getElementById('name-input');
+        const couponInput = document.getElementById('coupon-input');
+        const submitButton = document.getElementById('submit-button');
+        const cancelButton = document.getElementById('cancel-button');
+        const contactButton = document.getElementById('contact-button');
+        
+        let currentService = '';
+        let currentCategory = '';
+        
+        function showModal(category = '', service = '') {
+            currentCategory = category;
+            currentService = service;
+            modalOverlay.classList.add('active');
+            nameInput.focus();
+        }
+        
+        function hideModal() {
+            modalOverlay.classList.remove('active');
+            nameInput.value = '';
+            couponInput.value = '';
+        }
+        
+        // Handle modal submit
+        submitButton.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const coupon = couponInput.value.trim();
+            
+            if (name) {
+                let whatsappText = `Olá, meu nome é ${name}`;
+                
+                if (coupon) {
+                    whatsappText += `, fui indicado por ${coupon}`;
+                }
+                
+                if (currentService) {
+                    whatsappText += `, gostaria de falar sobre ${currentService}`;
+                } else {
+                    whatsappText += `, preciso de ajuda com um serviço personalizado`;
+                }
+                
+                const whatsappURL = `https://wa.me/5584999463887?text=${encodeURIComponent(whatsappText)}`;
+                
+                hideModal();
+                window.open(whatsappURL, '_blank');
+            } else {
+                // Show validation error
+                nameInput.style.borderColor = 'red';
+                nameInput.style.boxShadow = '0 0 0 2px rgba(255, 0, 0, 0.25)';
+                
+                setTimeout(() => {
+                    nameInput.style.borderColor = '';
+                    nameInput.style.boxShadow = '';
+                }, 3000);
+            }
+        });
+        
+        // Handle modal cancel
+        cancelButton.addEventListener('click', hideModal);
+        
+        // Close modal when clicking outside
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                hideModal();
+            }
+        });
+        
+        // Handle "Não encontrou o que precisa?" button
+        contactButton.addEventListener('click', () => {
+            currentCategory = '';
+            currentService = '';
+            showModal();
+        });
+        
+        // Handle Enter key in the name input
+        nameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitButton.click();
+            }
+        });
+        
+        // Debounce function to limit resize event frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), wait);
+            };
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateCircuits();
+            generateCards();
+        });
+        
+        // Debounced resize event
+        window.addEventListener('resize', debounce(generateCircuits, 250));
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
