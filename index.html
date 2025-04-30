@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptLab - Serviços Digitais</title>
-    <style>
+
+<html lang="pt-BR"><head><meta content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;" http-equiv="Content-Security-Policy"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PromptLab - Serviços Digitais</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
         :root {
             --primary: #0086c3;
             --primary-light: #00b9e3;
+            --primary-dark: #005a85;
             --background: #061831;
             --card-bg: rgba(15, 31, 60, 0.7);
+            --card-bg-hover: rgba(20, 40, 75, 0.85);
             --text-color: #ffffff;
             --glow-color: #00d0ff;
             --whatsapp: #25D366;
             --item-bg: rgba(30, 46, 75, 0.6);
             --item-hover: rgba(40, 56, 85, 0.8);
+            --modal-bg: rgba(10, 25, 50, 0.95);
         }
 
         * {
@@ -109,11 +114,133 @@
         }
 
         .logo {
-            width: 320px;
-            height: 320px;
+            width: 200px;
+            height: 200px;
             filter: drop-shadow(0 0 10px rgba(0, 208, 255, 0.5));
         }
 
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-light);
+            text-shadow: 0 0 10px var(--glow-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Serviços Inteligentes Section */
+        .serv-inteligentes {
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
+        .serv-int-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 1rem 0.5rem;
+            margin-bottom: 1.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-light) transparent;
+            gap: 1rem;
+            scroll-snap-type: x mandatory;
+        }
+
+        .serv-int-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .serv-int-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .serv-int-container::-webkit-scrollbar-thumb {
+            background-color: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        .int-card {
+            flex: 0 0 300px;
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 208, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            scroll-snap-align: start;
+        }
+
+        .int-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 185, 227, 0.1) 0%, transparent 100%);
+            z-index: 0;
+        }
+
+        .int-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 208, 255, 0.3);
+            background-color: var(--card-bg-hover);
+        }
+
+        .int-card-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(0, 185, 227, 0.2);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            color: var(--primary-light);
+            position: relative;
+            z-index: 1;
+        }
+
+        .int-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary-light);
+            position: relative;
+            z-index: 1;
+        }
+
+        .int-card-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+
+        .scroll-indicator {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Cards grid original */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -290,11 +417,14 @@
             border-radius: 1rem;
             padding: 2rem;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
             box-shadow: 0 0 30px rgba(0, 208, 255, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transform: scale(0.9);
             transition: transform 0.3s;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal-overlay.active .modal {
@@ -318,7 +448,7 @@
             font-size: 1rem;
         }
 
-        .form-input {
+        .form-input, .form-select {
             width: 100%;
             padding: 0.8rem 1rem;
             border-radius: 0.5rem;
@@ -329,7 +459,7 @@
             transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        .form-input:focus {
+        .form-input:focus, .form-select:focus {
             outline: none;
             border-color: var(--primary-light);
             box-shadow: 0 0 0 2px rgba(0, 185, 227, 0.25);
@@ -369,19 +499,302 @@
             background-color: var(--primary-light);
         }
 
+        /* Estilos adicionais para os serviços interativos */
+        .close-modal-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.2s;
+        }
+
+        .close-modal-btn:hover {
+            color: white;
+        }
+
+        .int-modal-content {
+            width: 100%;
+        }
+
+        .int-modal-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .int-modal-title {
+            font-size: 1.7rem;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(0, 208, 255, 0.5);
+        }
+
+        .int-modal-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .int-form {
+            margin-bottom: 1.5rem;
+        }
+
+        .int-form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .int-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .int-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .int-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 2px rgba(0, 208, 255, 0.2);
+        }
+
+        .int-checkbox {
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.5rem;
+            accent-color: var(--primary-light);
+        }
+
+        .int-radio {
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.5rem;
+            accent-color: var(--primary-light);
+        }
+
+        .int-submit-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .int-submit-btn:hover {
+            background-color: var(--primary-light);
+            box-shadow: 0 0 15px rgba(0, 208, 255, 0.5);
+        }
+
+        .result-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.8rem;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-title {
+            font-size: 1.2rem;
+            color: var(--primary-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-inner {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .radio-option, .quiz-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-option {
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .quiz-option:hover:not(.selected) {
+            background-color: rgba(0, 185, 227, 0.1);
+            border-color: rgba(0, 185, 227, 0.3);
+        }
+
+        .quiz-option.selected {
+            background-color: rgba(0, 185, 227, 0.2);
+            border-color: var(--primary-light);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .prev-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .prev-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .next-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .next-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        .whatsapp-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            background-color: var(--whatsapp);
+            color: white;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .whatsapp-link:hover {
+            background-color: #22C55E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-link i {
+            margin-right: 0.5rem;
+        }
+
+        .file-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-light);
+            background-color: rgba(0, 185, 227, 0.05);
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.8rem;
+        }
+
+        .file-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.8rem;
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .file-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-left: 0.5rem;
+        }
+
+        .remove-file {
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            padding: 0.2rem;
+        }
+
+        .remove-file:hover {
+            color: #FF4D4D;
+        }
+
+        .hashtag {
+            display: inline-block;
+            background-color: rgba(0, 185, 227, 0.2);
+            color: var(--primary-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            margin: 0.3rem;
+        }
+
         @media (max-width: 768px) {
             .cards-grid {
                 grid-template-columns: 1fr;
             }
             
             .logo {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
+            }
+
+            .int-card {
+                flex: 0 0 85%;
             }
         }
 
         @media (max-width: 500px) {
-            .card {
+            .card, .modal {
                 padding: 1.2rem 1rem;
             }
             
@@ -392,509 +805,2015 @@
             .category-title {
                 font-size: 1.1rem;
             }
+
+            .int-card {
+                flex: 0 0 90%;
+                padding: 1.2rem;
+            }
+
+            .int-card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="circuit-bg" id="circuit-bg"></div>
-        
-        <div class="logo-container">
-            <img src="https://pfst.cf2.poecdn.net/base/image/6fcdc2a78def23ff937e41724b2e6d9893ea60b9e8913f392026f94d81a94275?w=500&h=500" alt="PromptLab Logo" class="logo">
-        </div>
-        
-        <div class="cards-grid" id="cards-grid">
-            <!-- Cards will be dynamically inserted here -->
-        </div>
-        
-        <button class="whatsapp-button whatsapp-pulse" id="contact-button">
-            <span class="whatsapp-icon">📱</span>
+<div class="container">
+<div class="circuit-bg" id="circuit-bg"></div>
+<div class="logo-container">
+<img alt="PromptLab Logo" class="logo" src="https://pfst.cf2.poecdn.net/base/image/6fcdc2a78def23ff937e41724b2e6d9893ea60b9e8913f392026f94d81a94275?w=500&amp;h=500"/>
+</div>
+<!-- Nova seção: Serviços Inteligentes -->
+<div class="serv-inteligentes">
+<h2 class="section-title" style="color: red; text-decoration: underline;">Serviços grátis</h2>
+<p class="section-desc">Conheça gratuitamente um pouco do que a PromptLab pode fazer por você e por sua empresa.</p>
+<div class="serv-int-container">
+<!-- Card 1 -->
+<div class="int-card" data-service="password-security">
+<div class="int-card-icon">
+<i class="fas fa-lock"></i>
+</div>
+<h3 class="int-card-title">Teste de Segurança da Senha</h3>
+<p class="int-card-desc">Verifique a força da sua senha e quanto tempo levaria para ser quebrada.</p>
+</div>
+<!-- Card 2 -->
+<div class="int-card" data-service="data-leak">
+<div class="int-card-icon">
+<i class="fas fa-user-secret"></i>
+</div>
+<h3 class="int-card-title">Relatório de Vazamentos</h3>
+<p class="int-card-desc">Descubra se seu e-mail ou CPF foi exposto em vazamentos de dados.</p>
+</div>
+<!-- Card 3 -->
+<div class="int-card" data-service="learning-profile">
+<div class="int-card-icon">
+<i class="fas fa-book-reader"></i>
+</div>
+<h3 class="int-card-title">Teste de Perfil de Aprendizado</h3>
+<p class="int-card-desc">Responda 10 perguntas e descubra se seu perfil é visual, auditivo ou cinestésico para estudar melhor.</p>
+</div>
+<!-- Card 4 -->
+<div class="int-card" data-service="study-quiz">
+<div class="int-card-icon">
+<i class="fas fa-lightbulb"></i>
+</div>
+<h3 class="int-card-title">Quiz: Como Você Estuda Melhor</h3>
+<p class="int-card-desc">Responda 10 perguntas e descubra as melhores táticas de estudo para o seu perfil.</p>
+</div>
+<!-- Card 5 -->
+<div class="int-card" data-service="social-diagnosis">
+<div class="int-card-icon">
+<i class="fab fa-instagram"></i>
+</div>
+<h3 class="int-card-title">Diagnóstico do Instagram/TikTok</h3>
+<p class="int-card-desc">Análise gratuita do seu perfil nas redes sociais.</p>
+</div>
+<!-- Card 6 -->
+<div class="int-card" data-service="content-ideas">
+<div class="int-card-icon">
+<i class="fas fa-robot"></i>
+</div>
+<h3 class="int-card-title">5 Ideias de Conteúdo com IA</h3>
+<p class="int-card-desc">Receba ideias de conteúdo gratuitas para o seu nicho.</p>
+</div>
+<!-- Card 7 -->
+<div class="int-card" data-service="hashtag-check">
+<div class="int-card-icon">
+<i class="fas fa-hashtag"></i>
+</div>
+<h3 class="int-card-title">Verificação de Hashtags</h3>
+<p class="int-card-desc">Descubra as melhores hashtags e horários para seu nicho.</p>
+</div>
+<!-- Card 8 -->
+<div class="int-card" data-service="resume-analysis">
+<div class="int-card-icon">
+<i class="fas fa-file-alt"></i>
+</div>
+<h3 class="int-card-title">Análise de Currículo</h3>
+<p class="int-card-desc">Envie seu currículo em PDF para análise gratuita.</p>
+</div>
+<!-- Card 9 -->
+<div class="int-card" data-service="job-compatibility">
+<div class="int-card-icon">
+<i class="fas fa-check-circle"></i>
+</div>
+<h3 class="int-card-title">Compatibilidade com Vaga</h3>
+<p class="int-card-desc">Descubra se seu perfil combina com a vaga desejada.</p>
+</div>
+</div>
+<div class="scroll-indicator">
+<i class="fas fa-arrow-left"></i>
+<span>Deslize para ver mais serviços</span>
+<i class="fas fa-arrow-right"></i>
+</div>
+</div>
+<h2 class="section-title">Nossos Serviços</h2>
+<div class="cards-grid" id="cards-grid">
+<!-- Cards will be dynamically inserted here -->
+</div>
+<button class="whatsapp-button whatsapp-pulse" id="contact-button">
+<span class="whatsapp-icon">📱</span>
             Não encontrou o que precisa? Fale com a gente!
         </button>
-    </div>
-    
-    <!-- Modal for user information -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal">
-            <h3 class="modal-title">Para continuarmos</h3>
-            <div class="form-group">
-                <label for="name-input" class="form-label">Nome*</label>
-                <input type="text" id="name-input" class="form-input" placeholder="Digite seu nome completo">
-            </div>
-            <div class="form-group">
-                <label for="coupon-input" class="form-label">Cupom de Desconto (opcional)</label>
-                <input type="text" id="coupon-input" class="form-input" placeholder="Se possuir um cupom, digite aqui">
-            </div>
-            <div class="modal-buttons">
-                <button class="modal-button cancel-button" id="cancel-button">Cancelar</button>
-                <button class="modal-button submit-button" id="submit-button">Conversar com Consultor</button>
-            </div>
-        </div>
-    </div>
+</div>
+<!-- Modal for user information -->
+<div class="modal-overlay" id="modal-overlay">
+<div class="modal">
+<h3 class="modal-title">Para continuarmos</h3>
+<div class="form-group">
+<label class="form-label" for="name-input">Nome*</label>
+<input class="form-input" id="name-input" placeholder="Digite seu nome completo" type="text"/>
+</div>
+<div class="form-group">
+<label class="form-label" for="coupon-input">Cupom de Desconto (opcional)</label>
+<input class="form-input" id="coupon-input" placeholder="Se possuir um cupom, digite aqui" type="text"/>
+</div>
+<div class="modal-buttons">
+<button class="modal-button cancel-button" id="cancel-button">Cancelar</button>
+<button class="modal-button submit-button" id="submit-button">Conversar com Consultor</button>
+</div>
+</div>
+</div>
+<!-- Modais para os serviços inteligentes -->
+<div class="modal-overlay" id="int-modal-overlay">
+<div class="modal" id="int-modal">
+<button class="close-modal-btn" id="int-close-modal">
+<i class="fas fa-times"></i>
+</button>
+<div class="int-modal-content" id="int-modal-content">
+<!-- O conteúdo do modal será inserido dinamicamente -->
+</div>
+</div>
+</div>
+<!-- Templates para os serviços interativos -->
+<template id="password-security-template">
+<div class="int-modal-header">
+<h2 class="int-modal-title">Teste de Segurança da Senha</h2>
+<p class="int-modal-desc">Verifique a força da sua senha e quanto tempo levaria para ser quebrada.</p>
+</div>
+<form class="int-form" id="password-form">
+<div class="int-form-group">
+<label class="int-label" for="password-length">Quantos dígitos?</label>
+<input class="int-input" id="password-length" max="100" min="1" required="" type="number"/>
+</div>
+<div class="option-group">
+<div class="radio-option">
+<input class="int-checkbox" id="uppercase" type="checkbox"/>
+<label for="uppercase">Letras maiúsculas</label>
+</div>
+<div class="radio-option">
+<input class="int-checkbox" id="lowercase" type="checkbox"/>
+<label for="lowercase">Letras minúsculas</label>
+</div>
+<div class="radio-option">
+<input class="int-checkbox" id="numbers" type="checkbox"/>
+<label for="numbers">Números</label>
+</div>
+<div class="radio-option">
+<input class="int-checkbox" id="symbols" type="checkbox"/>
+<label for="symbols">Símbolos</label>
+</div>
+</div>
+<button class="int-submit-btn" type="submit">
+<i class="fas fa-shield-alt mr-2"></i> Verificar segurança
+            </button>
+</form>
+<div id="password-result" style="display: none; margin-top: 1.5rem;">
+<div class="int-form-group">
+<div class="flex justify-between mb-1">
+<span>Força da senha:</span>
+<span id="strength-text"></span>
+</div>
+<div class="progress-bar">
+<div class="progress-inner" id="strength-bar"></div>
+</div>
+</div>
+<div class="result-container">
+<p class="result-title">Um hacker pode descobrir sua senha em:</p>
+<p id="crack-time" style="font-size: 1.2rem; font-weight: 600;"></p>
+</div>
+<a class="whatsapp-link" href="#" id="password-whatsapp">
+<i class="fab fa-whatsapp"></i> Quero uma senha mais segura
+            </a>
+</div>
+</template>
+<template id="data-leak-template">
+<div class="int-modal-header">
+<h2 class="int-modal-title">Relatório de Vazamentos de Dados</h2>
+<p class="int-modal-desc">Descubra se seu e-mail ou CPF foi exposto em vazamentos de dados.</p>
+</div>
+<form class="int-form" id="data-leak-form">
+<div class="option-group">
+<div class="radio-option">
+<input checked="" class="int-radio" id="check-email" name="check-type" type="radio" value="email"/>
+<label for="check-email">E-mail</label>
+</div>
+<div class="radio-option">
+<input class="int-radio" id="check-cpf" name="check-type" type="radio" value="cpf"/>
+<label for="check-cpf">CPF</label>
+</div>
+</div>
+<div class="int-form-group" id="email-input-group">
+<label class="int-label" for="email-input">Digite seu e-mail</label>
+<input class="int-input" id="email-input" placeholder="seu@email.com" required="" type="email"/>
+</div>
+<div class="int-form-group" id="cpf-input-group" style="display: none;">
+<label class="int-label" for="cpf-input">Digite seu CPF</label>
+<input class="int-input" id="cpf-input" placeholder="000.000.000-00" required="" type="text"/>
+</div>
+<a class="whatsapp-link" href="#" id="data-leak-whatsapp">
+<i class="fab fa-whatsapp"></i> Verificar vazamentos
+            </a>
+</form>
+</template>
+<template id="learning-profile-template">
+<div class="int-modal-header">
+<h2 class="int-modal-title">Teste de Perfil de Aprendizado</h2>
+<p class="int-modal-desc">Descubra se você é visual, auditivo ou cinestésico para estudar melhor.</p>
+</div>
+<div id="learning-quiz-container">
+<div class="question-container">
+<div class="question" data-question="1">
+<p class="int-label">1. Ao aprender algo novo, você prefere:</p>
+<div class="options">
+<div class="quiz-option" data-type="visual">
+                            Ver diagramas, gráficos e imagens
+                        </div>
+<div class="quiz-option" data-type="auditory">
+                            Ouvir explicações detalhadas
+                        </div>
+<div class="quiz-option" data-type="kinesthetic">
+                            Experimentar e fazer na prática
+                        </div>
+</div>
+</div>
+<div class="question" data-question="2" style="display: none;">
+<p class="int-label">2. Ao ler um livro, você costuma:</p>
+<div class="options">
+<div class="quiz-option" data-type="visual">
+                            Visualizar as cenas na sua mente
+                        </div>
+<div class="quiz-option" data-type="auditory">
+                            Ouvir audiobook ou ler em voz alta
+                        </div>
+<div class="quiz-option" data-type="kinesthetic">
+                            Prestar atenção em como você se sente com a história
+                        </div>
+</div>
+</div>
+<div class="question" data-question="3" style="display: none;">
+<p class="int-label">3. Em uma sala de aula, você aprende melhor quando:</p>
+<div class="options">
+<div class="quiz-option" data-type="visual">
+                            O professor usa recursos visuais
+                        </div>
+<div class="quiz-option" data-type="auditory">
+                            Há discussões e explicações verbais
+                        </div>
+<div class="quiz-option" data-type="kinesthetic">
+                            Há atividades práticas e experimentos
+                        </div>
+</div>
+</div>
+<div class="question" data-question="4" style="display: none;">
+<p class="int-label">4. Quando você precisa se lembrar de algo, geralmente:</p>
+<div class="options">
+<div class="quiz-option" data-type="visual">
+                            Visualiza a informação na sua mente
+                        </div>
+<div class="quiz-option" data-type="auditory">
+                            Repete em voz alta ou na sua cabeça
+                        </div>
+<div class="quiz-option" data-type="kinesthetic">
+                            Associa com uma sensação ou movimento
+                        </div>
+</div>
+</div>
+<div class="question" data-question="5" style="display: none;">
+<p class="int-label">5. Ao dar instruções a alguém, você geralmente:</p>
+<div class="options">
+<div class="quiz-option" data-type="visual">
+                            Desenha um mapa ou mostra como fazer
+                        </div>
+<div class="quiz-option" data-type="auditory">
+                            Explica verbalmente com detalhes
+                        </div>
+<div class="quiz-option" data-type="kinesthetic">
+                            Guia fisicamente ou demonstra na prática
+                        </div>
+</div>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev-btn" id="prev-question" style="display: none;">
+<i class="fas fa-arrow-left"></i> Anterior
+                    </button>
+<button class="nav-btn next-btn" id="next-question">
+                        Próxima <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+<div id="learning-result" style="display: none;">
+<div class="result-container">
+<h3 class="result-title">Seu perfil de aprendizado é:</h3>
+<p id="learning-profile-type" style="font-size: 1.5rem; font-weight: bold; color: var(--primary-light); margin-bottom: 1rem;"></p>
+<p id="learning-profile-description"></p>
+</div>
+<a class="whatsapp-link" href="#" id="learning-whatsapp">
+<i class="fab fa-whatsapp"></i> Quero conteúdos para meu perfil de aprendizado
+            </a>
+</div>
+</template>
+<template id="study-quiz-template">
+<div class="int-modal-header">
+<h2 class="int-modal-title">Quiz: Como Você Estuda Melhor</h2>
+<p class="int-modal-desc">Descubra as melhores táticas de estudo para o seu perfil.</p>
+</div>
+<div id="study-quiz-container">
+<div class="question-container">
+<div class="question" data-question="1">
+<p class="int-label">1. Quando você começa a estudar, geralmente:</p>
+<div class="options">
+<div class="quiz-option" data-type="planner">
+                            Planeja todo o conteúdo com antecedência
+                        </div>
+<div class="quiz-option" data-type="immersive">
+                            Mergulha intensamente em um tópico
+                        </div>
+<div class="quiz-option" data-type="social">
+                            Prefere estudar com outras pessoas
+                        </div>
+</div>
+</div>
+<div class="question" data-question="2" style="display: none;">
+<p class="int-label">2. O ambiente ideal para seus estudos é:</p>
+<div class="options">
+<div class="quiz-option" data-type="focused">
+                            Silencioso e sem distrações
+                        </div>
+<div class="quiz-option" data-type="ambient">
+                            Com música de fundo ou ambiente movimentado
+                        </div>
+<div class="quiz-option" data-type="flexible">
+                            Varia dependendo do que estou estudando
+                        </div>
+</div>
+</div>
+<div class="question" data-question="3" style="display: none;">
+<p class="int-label">3. Quanto tempo você costuma estudar continuamente:</p>
+<div class="options">
+<div class="quiz-option" data-type="sprint">
+                            Sessões curtas e intensas (25-30 min)
+                        </div>
+<div class="quiz-option" data-type="marathon">
+                            Sessões longas (1 hora ou mais)
+                        </div>
+<div class="quiz-option" data-type="irregular">
+                            Sem tempo definido, estudo até cansar
+                        </div>
+</div>
+</div>
+<div class="question" data-question="4" style="display: none;">
+<p class="int-label">4. Você prefere revisar o conteúdo:</p>
+<div class="options">
+<div class="quiz-option" data-type="systematic">
+                            Regularmente, seguindo um cronograma
+                        </div>
+<div class="quiz-option" data-type="pressure">
+                            Próximo à prova/avaliação
+                        </div>
+<div class="quiz-option" data-type="practical">
+                            Aplicando o conhecimento em exercícios
+                        </div>
+</div>
+</div>
+<div class="question" data-question="5" style="display: none;">
+<p class="int-label">5. Para fixar melhor o conteúdo, você:</p>
+<div class="options">
+<div class="quiz-option" data-type="notes">
+                            Faz anotações e resumos detalhados
+                        </div>
+<div class="quiz-option" data-type="teach">
+                            Explica para outra pessoa ou a si mesmo
+                        </div>
+<div class="quiz-option" data-type="multimedia">
+                            Usa recursos variados (vídeos, apps, etc.)
+                        </div>
+</div>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev-btn" id="study-prev-question" style="display: none;">
+<i class="fas fa-arrow-left"></i> Anterior
+                    </button>
+<button class="nav-btn next-btn" id="study-next-question">
+                        Próxima <i class="fas fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+<div id="study-result" style="display: none;">
+<div class="result-container">
+<h3 class="result-title">Seu perfil de estudo é:</h3>
+<p id="study-profile-type" style="font-size: 1.5rem; font-weight: bold; color: var(--primary-light); margin-bottom: 1rem;"></p>
+<p id="study-profile-description"></p>
+</div>
+<a class="whatsapp-link" href="#" id="study-whatsapp">
+<i class="fab fa-whatsapp"></i> Quero ajuda para estudar melhor
+            </a>
+</div>
+</template>
+<template id="social-diagnosis-template">
+<div class="int-modal-header">
+<h2 class="int-modal-title">Diagnóstico do Instagram/TikTok</h2>
+<p class="int-modal-desc">Receba uma análise gratuita do seu perfil nas redes sociais.</p>
+</div>
+<form class="int-form" id="social-diagnosis-form">
+<div class="option-group">
+<div class="radio-option">
+<input checked="" class="int-radio" id="instagram-profile" name="profile-type" type="radio" value="instagram"/>
+<label for="instagram-profile">Instagram</label>
+</div>
+<div class="radio-option">
+<input class="int-radio" id="tiktok-profile" name="profile-type" type="radio" value="tiktok"/>
+<label for="tiktok-profile">TikTok</label>
+</div>
+</div>
+<div class="int-form-group">
+<label class="int-label" for="profile-url">Digite o link do seu perfil</label>
+<input class="int-input" id="profile-url" placeholder="https://www.instagram.com/seuusuario" required="" type="url"/>
+</div>
+<a class="whatsapp-link" href="#" id="social-diagnosis-whatsapp">
+<i class="fab fa-whatsapp"></i> Solicitar diagnóstico
+            </a>
+</form>
+</template>
 
-    <script>
-        // Categories and services data
-        const categoriesData = [
-            {
-                icon: "🧠",
-                title: "Formatação Remota de Computadores e Celulares",
-                description: "Seu aparelho como novo, sem sair de casa.",
-                services: [
-                    "Formatação de computadores",
-                    "Instalação/atualização de programas",
-                    "Treinamento no uso de programas/sistemas",
-                    "Instalação de SSD e memória",
-                    "Consultoria para compra de peças, computadores e celulares",
-                    "Formatação de celulares",
-                    "Desbloqueio de celulares/conta Google",
-                    "Limpeza de arquivos inúteis (vídeos repetidos, Virus e etc.)",
-                    "Backup de fotos e contatos na nuvem",
-                    "Instalação de apps secretos e cofres em seu celular"
-                ]
-            },
-            {
-                icon: "📱",
-                title: "Redes Sociais",
-                description: "Restaure e proteja suas contas com segurança total.",
-                services: [
-                    "Recuperação de conta no Instagram",
-                    "Recuperação de conta no Facebook",
-                    "Recuperação de conta no Google",
-                    "Recuperação de WhatsApp",
-                    "Monitoramento de redes sociais de crianças",
-                    "Análise gratuita do nível de segurança da sua conta",
-                    "Geração de senha impossível de descobrir e autenticação em dois fatores",
-                    "Proteja todas as suas contas em 1 hora",
-                    "Consultoria de cibersegurança para contas empresariais e de influenciadores",
-                    "Criação de artes para Instagram e WhatsApp",
-                    "Mini portfólio ou cardápio digital (PDF/Imagem)",
-                    "Capas de destaque para stories",
-                    "Cartões digitais com QR Code e links (ex: Linktree personalizado)"
-                ]
-            },
-            {
-                icon: "📂",
-                title: "Recuperação de Dados de Computadores e Celulares",
-                description: "Arquivos perdidos? Trazemos de volta com agilidade.",
-                services: [
-                    "Recuperação de arquivos excluídos (planilhas e documentos)",
-                    "Recuperação de fotos, vídeos e mensagens (celular)",
-                    "Recuperação de dados após formatação",
-                    "Restauração de fotos danificadas",
-                    "Conversão de fotos analógicas para digital",
-                    "Criação de vídeos com fotos de parentes falecidos"
-                ]
-            },
-            {
-                icon: "🧠",
-                title: "Consultoria Digital Pessoal",
-                description: "Descomplique sua vida online com soluções práticas, seguras e personalizadas.",
-                services: [
-                    "Auditoria de presença digital (o que aparece no Google sobre você)",
-                    "Criação de identidade digital (email, assinatura, domínio)",
-                    "Limpeza de rastros digitais (exclusão de contas antigas e vazamentos)",
-                    "Reputação online: como melhorar e manter"
-                ]
-            },
-            {
-                icon: "💼",
-                title: "Ferramentas para Pequenos Negócios",
-                description: "Soluções simples e poderosas para seu negócio crescer.",
-                services: [
-                    "Criação de catálogo de produtos em PDF ou site leve",
-                    "Configuração de atendimento automático no WhatsApp",
-                    "Criação de link de pagamento com QR Code (Pix/Cobrança)",
-                    "Sugestão e instalação de apps gratuitos para gestão de vendas",
-                    "Automação de respostas no Instagram e Facebook",
-                    "Mapeamento de processos que estejam gerando gargalo",
-                    "Implementação de melhorias",
-                    "Treinamento de equipes"
-                ]
-            },
-            {
-                icon: "📈",
-                title: "Impulsione Seu Instagram/TikTok",
-                description: "Destaque seu perfil com estratégias testadas e resultados reais.",
-                services: [
-                    "Aumento de seguidores",
-                    "Aumento de curtidas",
-                    "Aumento de visualizações",
-                    "Passo a Passo para monetizar",
-                    "Sugestão de hashtags e horários",
-                    "Criação de cronograma de postagens",
-                    "Edição de bio e destaques com linguagem estratégica",
-                    "Geração de ideias de conteúdo com IA (calendário temático)"
-                ]
-            },
-            {
-                icon: "🤖",
-                title: "Inteligência Artificial",
-                description: "Treinamentos práticos para dominar a IA no seu dia a dia.",
-                services: [
-                    "Treinamento para alunos",
-                    "Treinamento para professores",
-                    "Treinamento para influenciadores"
-                ]
-            },
-            {
-                icon: "📄",
-                title: "Currículos Personalizados para Cada Vaga",
-                description: "Aumente suas chances com um currículo pronto para ser escolhido.",
-                services: [
-                    "Criação ou avaliação de currículo",
-                    "Currículo compatível com a IA da Gupy",
-                    "Currículo compatível com a IA do LinkedIn",
-                    "IA que adapta seu currículo para qualquer vaga"
-                ]
-            },
-            {
-                icon: "👥",
-                title: "Gestão e Análise de Candidatos para Empresas",
-                description: "Processo seletivo mais rápido e inteligente.",
-                services: [
-                    "Triagem de currículos",
-                    "Entrevistas preliminares",
-                    "Relatórios de compatibilidade com o perfil da vaga"
-                ]
-            },
-            {
-                icon: "🧾",
-                title: "Documentação Rápida e Profissional",
-                description: "Documentos prontos com aparência profissional em tempo recorde.",
-                services: [
-                    "Criação de contratos simples (freelancer, prestação de serviço)",
-                    "Montagem de propostas comerciais em PDF",
-                    "Geração de declarações, recibos e termos",
-                    "Currículo em formato internacional (com carta de apresentação)",
-                    "Formulários automáticos (Google Forms, Typeform)"
-                ]
-            },
-            {
-                icon: "🌐",
-                title: "Criação de Sites e Aplicativos",
-                description: "Soluções digitais para expandir seu alcance.",
-                services: [
-                    "Desenvolvimento de sites pessoais e corporativos",
-                    "Criação de aplicativos de agendamentos, delivery, atendimento online e mais"
-                ]
-            },
-            {
-                icon: "🤖",
-                title: "Criação de Chatbots, Agentes de IA e Automações",
-                description: "Automatize processos e melhore seu atendimento.",
-                services: [
-                    "Desenvolvimento de chatbots para atendimento",
-                    "Criação de agentes de IA personalizados para qualquer necessidade",
-                    "Automação de postagens em redes sociais",
-                    "Automação residencial",
-                    "Automação de tarefas repetitivas"
-                ]
-            },
-            {
-                icon: "🎓",
-                title: "Criação e Gestão de Cursos",
-                description: "Transforme seu conhecimento em conteúdo educacional estruturado.",
-                services: [
-                    "Planejamento de cursos online",
-                    "Produção de materiais didáticos",
-                    "Gestão de plataformas de ensino"
-                ]
-            },
-            {
-                icon: "🎙️",
-                title: "Narrações, Músicas e Anúncios",
-                description: "Produções de áudio profissionais para qualquer projeto.",
-                services: [
-                    "Clonagem de qualquer voz",
-                    "Narração para vídeos e anúncios comerciais",
-                    "Produção de jingles e músicas",
-                    "Criação de scripts para anúncios"
-                ]
-            },
-            {
-                icon: "🎯",
-                title: "Cursos e Concursos",
-                description: "Preparação eficiente para provas e exames importantes.",
-                services: [
-                    "Material para concursos em vídeo aula e PDF",
-                    "Mapas mentais estruturados para cada material",
-                    "Macetes/dicas de português e matemática",
-                    "Criação de Mapas mentais e Podcast personalizados para seus estudos",
-                    "Material focado no ENEM",
-                    "Material focado no CNU 2025",
-                    "Carteira de Estudante válida em todo país",
-                    "Treinamento para aprender a usar IA nos estudos"
-                ]
-            },
-            {
-                icon: "📚",
-                title: "Criação de Artigos Acadêmicos, TCCs, Revisões e ENEM",
-                description: "Suporte acadêmico profissional para todos os níveis.",
-                services: [
-                    "Redação de artigos acadêmicos",
-                    "Redação nota 1000 no ENEM",
-                    "Orientação para TCC",
-                    "Revisão e formatação de textos, TCCs e monografias"
-                ]
-            },
-            {
-                icon: "🎬",
-                title: "Serviços de Streaming",
-                description: "Acesso às melhores plataformas de entretenimento.",
-                services: [
-                    "Netflix",
-                    "Amazon",
-                    "MAX",
-                    "Disney Plus",
-                    "Globoplay",
-                    "Premiere",
-                    "Spotify",
-                    "YouTube Premium"
-                ]
-            },
-            {
-                icon: "📲 🔞",
-                title: "Aplicativos Premium",
-                description: "Desbloqueie recursos avançados dos melhores aplicativos.",
-                services: [
-                    "CapCut Pro",
-                    "Canva Pro",
-                    "TikTok Premium",
-                    "Instagram Premium",
-                    "WhatsApp Premium"
-                ]
-            },
-            {
-                icon: "🎲",
-                title: "Loteria 🔞",
-                description: "Aumente suas chances com estratégias e grupos especializados.",
-                services: [
-                    "Grupo VIP com apostas da Mega-Sena",
-                    "Grupo VIP com apostas da Lotofácil",
-                    "Plataforma de bolões Caixa com mais de 11 mil ganhadores"
-                ]
-            },
-            {
-                icon: "👑",
-                title: "Grupos VIP 🔞",
-                description: "Acesso exclusivo a conteúdos e comunidades especializadas.",
-                services: [
-                    "OnlyFans e Privacy",
-                    "Renda Extra",
-                    "Hackers",
-                    "Sala de sinais do 'Tigrinho'"
-                ]
-            },
-            {
-                icon: "🔐",
-                title: "Gestão de Plataforma 🔞(OnlyFans e Privacy)",
-                description: "Suporte profissional para criadores de conteúdo adulto.",
-                services: [
-                    "Configuração de perfis OnlyFans",
-                    "Estratégias para produzir conteúdo sem aparecer",
-                    "Gestão de conteúdo e publicações"
-                ]
-            }            
-        ];
+
+<template id="content-ideas-template">
+  <div class="int-modal-header">
+    <h2 class="int-modal-title">5 Ideias de Conteúdo com IA</h2>
+    <p class="int-modal-desc">Receba ideias de conteúdo gratuitas para o seu nicho.</p>
+  </div>
+  <form class="int-form" id="content-ideas-form">
+    <div class="int-form-group">
+      <label class="int-label" for="content-niche">Qual é o seu nicho?</label>
+      <select class="int-input" id="content-niche" required style="background-color: white; color: black;">
+        <option value="">Selecione...</option>
+        <option value="moda">Moda</option>
+        <option value="fitness">Fitness</option>
+        <option value="finanças">Finanças</option>
+        <option value="Culinária">Culinária</option>
+        <option value="marketing">Marketing</option>
+        <option value="educação">Educação</option>
+        <option value="tecnologia">Tecnologia</option>
+        <option value="beleza">Beleza</option>
+        <option value="outros">Outros</option>
+      </select>
+    </div>
+    <button class="int-submit-btn" type="submit">
+      <i class="fas fa-lightbulb"></i> Gerar ideias
+    </button>
+  </form>
+  <div id="content-ideas-result" style="display: none; margin-top: 1.5rem;">
+    <div class="result-container">
+      <h3 class="result-title">5 Ideias para seu nicho:</h3>
+      <ul id="ideas-list" style="list-style-type: decimal; padding-left: 1.5rem;">
+        <!-- As ideias geradas serão adicionadas aqui -->
+      </ul>
+    </div>
+    <a class="whatsapp-link" href="#" id="content-ideas-whatsapp">
+      <i class="fab fa-whatsapp"></i> Quero mais ideias personalizadas para meu nicho
+    </a>
+  </div>
+</template>
+
+<script>
+  document.getElementById('content-ideas-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Impede o envio do formulário
+    const categoria = document.getElementById('content-niche').value;
+
+    if (categoria) {
+      // Simula uma requisição ao backend
+      fetch(`/buscar-ideias?categoria=${categoria}`)
+        .then((response) => response.json())
+        .then((data) => {
+          const ideasList = document.getElementById('ideas-list');
+          const contentResult = document.getElementById('content-ideas-result');
+
+          // Limpa as ideias anteriores
+          ideasList.innerHTML = '';
+
+          // Adiciona novas ideias à lista
+          data.ideias.forEach((ideia) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = ideia;
+            ideasList.appendChild(listItem);
+          });
+
+          // Exibe o contêiner de resultados
+          contentResult.style.display = 'block';
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar ideias:', error);
+          alert('Houve um erro ao gerar as ideias. Tente novamente mais tarde.');
+        });
+    } else {
+      alert('Por favor, selecione um nicho.');
+    }
+  });
+</script>
+
+
+<template id="hashtag-check-template">
+  <div class="int-modal-header">
+    <h2 class="int-modal-title">Verificação de Hashtags</h2>
+    <p class="int-modal-desc">Descubra as melhores hashtags e horários para seu nicho.</p>
+  </div>
+  <form class="int-form" id="hashtag-check-form">
+    <div class="int-form-group">
+      <label class="int-label" for="hashtag-niche">Qual é o seu nicho?</label>
+      <select class="int-input" id="hashtag-niche" required style="background-color: white; color: black;">
+        <option value="">Selecione...</option>
+        <option value="moda">Moda</option>
+        <option value="fitness">Fitness</option>
+        <option value="finanças">Finanças</option>
+        <option value="Culinária">Culinária</option>
+        <option value="marketing">Marketing</option>
+        <option value="educação">Educação</option>
+        <option value="tecnologia">Tecnologia</option>
+        <option value="beleza">Beleza</option>
+        <option value="outros">Outros</option>
+      </select>
+    </div>
+    <button class="int-submit-btn" type="submit">
+      <i class="fas fa-search"></i> Verificar hashtags
+    </button>
+  </form>
+  <div id="hashtag-result" style="display: none; margin-top: 1.5rem;">
+    <div class="result-container">
+      <h3 class="result-title">Melhores hashtags para seu nicho:</h3>
+      <div id="hashtags-container" style="margin-bottom: 1.5rem;"></div>
+      <h3 class="result-title">Melhores horários para postar:</h3>
+      <ul id="best-times" style="list-style: none;">
+        <!-- Os horários serão adicionados aqui -->
+      </ul>
+    </div>
+    <a class="whatsapp-link" href="#" id="hashtag-whatsapp">
+      <i class="fab fa-whatsapp"></i> Quero ajuda para melhorar meu alcance
+    </a>
+  </div>
+</template>
+
+<script>
+  // Lógica para o formulário de verificação de hashtags
+  document.getElementById('hashtag-check-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Impede o envio do formulário
+
+    const nicheSelect = document.getElementById('hashtag-niche');
+    const niche = nicheSelect.value;
+
+    if (niche) {
+      fetch(`/buscar-hashtags?nicho=${niche}`)
+        .then((response) => response.json())
+        .then((data) => {
+          const hashtagsContainer = document.getElementById('hashtags-container');
+          const bestTimesList = document.getElementById('best-times');
+          const hashtagResult = document.getElementById('hashtag-result');
+
+          // Limpa os resultados anteriores
+          hashtagsContainer.innerHTML = '';
+          bestTimesList.innerHTML = '';
+
+          if (data.hashtags && data.hashtags.length > 0) {
+            // Adiciona as hashtags ao contêiner
+            data.hashtags.forEach((hashtag) => {
+              const span = document.createElement('span');
+              span.textContent = `#${hashtag}`;
+              span.style.marginRight = '0.5rem';
+              span.style.fontWeight = 'bold';
+              hashtagsContainer.appendChild(span);
+            });
+          } else {
+            hashtagsContainer.textContent = 'Nenhuma hashtag encontrada para este nicho.';
+          }
+
+          if (data.best_times && data.best_times.length > 0) {
+            // Adiciona os melhores horários à lista
+            data.best_times.forEach((time) => {
+              const listItem = document.createElement('li');
+              listItem.textContent = time;
+              bestTimesList.appendChild(listItem);
+            });
+          } else {
+            const noTimes = document.createElement('li');
+            noTimes.textContent = 'Nenhum horário recomendado disponível.';
+            bestTimesList.appendChild(noTimes);
+          }
+
+          // Exibe o contêiner de resultados
+          hashtagResult.style.display = 'block';
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar hashtags:', error);
+          alert('Houve um erro ao buscar as hashtags. Tente novamente mais tarde.');
+        });
+    } else {
+      alert('Por favor, selecione um nicho antes de continuar.');
+    }
+  });
+</script>
+
+<template id="resume-analysis-template">
+        <div class="int-modal-header">
+            <h2 class="int-modal-title">Análise de Currículo</h2>
+            <p class="int-modal-desc">Envie seu currículo em PDF para análise gratuita.</p>
+        </div>
         
-        // Generate circuit elements with performance optimization
-        function generateCircuits() {
-            const circuitBg = document.getElementById('circuit-bg');
-            // Calculate number of circuits based on screen width, but limit maximum
-            const circuitCount = Math.min(20, Math.floor(window.innerWidth / 40));
+        <form id="resume-analysis-form" class="int-form">
+            <div class="file-upload">
+                <label for="resume-file" style="cursor: pointer; display: block; text-align: center;">
+                    <i class="fas fa-file-pdf" style="font-size: 2rem; display: block; margin-bottom: 1rem;"></i>
+                    <span>Clique para selecionar seu currículo (PDF)</span>
+                    <input type="file" id="resume-file" style="display: none;" accept=".pdf" required="">
+                </label>
+            </div>
             
-            circuitBg.innerHTML = '';
-            const fragment = document.createDocumentFragment();
+            <div id="selected-file" style="display: none; margin-top: 1rem;">
+                <div class="file-info">
+                    <i class="fas fa-file-pdf" style="color: var(--primary-light);"></i>
+                    <span id="file-name" class="file-name"></span>
+                    <button id="remove-file" class="remove-file">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
             
-            for (let i = 0; i < circuitCount; i++) {
-                const circuit = document.createElement('div');
-                circuit.className = 'circuit';
-                
-                const startPos = Math.random() * 100;
-                circuit.style.left = `${startPos}%`;
-                circuit.style.animationDelay = `${Math.random() * 15}s`;
-                circuit.style.height = `${50 + Math.random() * 150}px`;
-                
-                // Add nodes (limit to improve performance)
-                const nodeCount = Math.floor(Math.random() * 2) + 1;
-                for (let j = 0; j < nodeCount; j++) {
-                    const node = document.createElement('div');
-                    node.className = 'node';
-                    node.style.top = `${(j + 1) * (100 / (nodeCount + 1))}%`;
-                    node.style.left = '0';
-                    node.style.transform = 'translate(-50%, -50%)';
-                    circuit.appendChild(node);
-                }
-                
-                fragment.appendChild(circuit);
+            <a href="#" id="resume-analysis-whatsapp" class="whatsapp-link" style="opacity: 0.5; pointer-events: none; margin-top: 1.5rem;">
+                <i class="fab fa-whatsapp"></i> Solicitar análise gratuita do meu currículo
+            </a>
+        </form>
+    </template>
+
+    <template id="job-compatibility-template">
+        <div class="int-modal-header">
+            <h2 class="int-modal-title">Compatibilidade com Vaga</h2>
+            <p class="int-modal-desc">Descubra se seu perfil combina com a vaga desejada.</p>
+        </div>
+        
+        <form id="job-compatibility-form" class="int-form">
+            <div class="file-upload">
+                <label for="job-resume-file" style="cursor: pointer; display: block; text-align: center;">
+                    <i class="fas fa-file-pdf" style="font-size: 2rem; display: block; margin-bottom: 1rem;"></i>
+                    <span>Clique para selecionar seu currículo (PDF)</span>
+                    <input type="file" id="job-resume-file" style="display: none;" accept=".pdf" required="">
+                </label>
+            </div>
+            
+            <div id="job-selected-file" style="display: none; margin-top: 1rem;">
+                <div class="file-info">
+                    <i class="fas fa-file-pdf" style="color: var(--primary-light);"></i>
+                    <span id="job-file-name" class="file-name"></span>
+                    <button id="job-remove-file" class="remove-file">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="int-form-group" style="margin-top: 1.5rem;">
+                <label for="job-url" class="int-label">Link da vaga</label>
+                <input type="url" id="job-url" class="int-input" placeholder="https://www.site.com/vaga" required="">
+            </div>
+            
+            <a href="#" id="job-compatibility-whatsapp" class="whatsapp-link" style="opacity: 0.5; pointer-events: none; margin-top: 1.5rem;">
+                <i class="fab fa-whatsapp"></i> Verificar compatibilidade com a vaga
+            </a>
+        </form>
+    </template>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const phone = '5584999463887';
+            
+            // Variáveis globais
+            const modalOverlay = document.getElementById('modal-overlay');
+            const nameInput = document.getElementById('name-input');
+            const couponInput = document.getElementById('coupon-input');
+            const submitButton = document.getElementById('submit-button');
+            const cancelButton = document.getElementById('cancel-button');
+            const contactButton = document.getElementById('contact-button');
+            
+            // Variáveis para os serviços interativos
+            const intModalOverlay = document.getElementById('int-modal-overlay');
+            const intModal = document.getElementById('int-modal');
+            const intModalContent = document.getElementById('int-modal-content');
+            const intCloseModal = document.getElementById('int-close-modal');
+            const intCards = document.querySelectorAll('.int-card');
+            
+            let currentService = '';
+            let currentCategory = '';
+            
+            // Função auxiliar para criar links do WhatsApp
+            function createWhatsAppLink(message) {
+                return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
             }
             
-            circuitBg.appendChild(fragment);
-        }
-        
-        // Generate cards for services
-        function generateCards() {
-            const cardsGrid = document.getElementById('cards-grid');
-            
-            categoriesData.forEach((category, categoryIndex) => {
-                const card = document.createElement('div');
-                card.className = 'card';
+            // Generate circuit elements
+            function generateCircuits() {
+                const circuitBg = document.getElementById('circuit-bg');
+                // Calculate number of circuits based on screen width, but limit maximum
+                const circuitCount = Math.min(20, Math.floor(window.innerWidth / 40));
                 
-                let servicesHTML = '';
-                category.services.forEach((service, serviceIndex) => {
-                    servicesHTML += `
-                        <div class="service-item" data-category="${categoryIndex}" data-service="${serviceIndex}">
-                            ${service}
+                circuitBg.innerHTML = '';
+                const fragment = document.createDocumentFragment();
+                
+                for (let i = 0; i < circuitCount; i++) {
+                    const circuit = document.createElement('div');
+                    circuit.className = 'circuit';
+                    
+                    const startPos = Math.random() * 100;
+                    circuit.style.left = `${startPos}%`;
+                    circuit.style.animationDelay = `${Math.random() * 15}s`;
+                    circuit.style.height = `${50 + Math.random() * 150}px`;
+                    
+                    // Add nodes (limit to improve performance)
+                    const nodeCount = Math.floor(Math.random() * 2) + 1;
+                    for (let j = 0; j < nodeCount; j++) {
+                        const node = document.createElement('div');
+                        node.className = 'node';
+                        node.style.top = `${(j + 1) * (100 / (nodeCount + 1))}%`;
+                        node.style.left = '0';
+                        node.style.transform = 'translate(-50%, -50%)';
+                        circuit.appendChild(node);
+                    }
+                    
+                    fragment.appendChild(circuit);
+                }
+                
+                circuitBg.appendChild(fragment);
+            }
+            
+            // Categories and services data
+            const categoriesData = [
+                {
+                    icon: "🧠",
+                    title: "Formatação Remota de Computadores e Celulares",
+                    description: "Seu aparelho como novo, sem sair de casa.",
+                    services: [
+                        "Formatação de computadores",
+                        "Instalação/atualização de programas",
+                        "Treinamento no uso de programas/sistemas",
+                        "Instalação de SSD e memória",
+                        "Consultoria para compra de peças, computadores e celulares",
+                        "Formatação de celulares",
+                        "Desbloqueio de celulares/conta Google",
+                        "Limpeza de arquivos inúteis (vídeos repetidos, Virus e etc.)",
+                        "Backup de fotos e contatos na nuvem",
+                        "Instalação de apps secretos e cofres em seu celular"
+                    ]
+                },
+                {
+                    icon: "📱",
+                    title: "Redes Sociais",
+                    description: "Restaure e proteja suas contas com segurança total.",
+                    services: [
+                        "Recuperação de conta no Instagram",
+                        "Recuperação de conta no Facebook",
+                        "Recuperação de conta no Google",
+                        "Recuperação de WhatsApp",
+                        "Monitoramento de redes sociais de crianças",
+                        "Análise gratuita do nível de segurança da sua conta",
+                        "Geração de senha impossível de descobrir e autenticação em dois fatores",
+                        "Proteja todas as suas contas em 1 hora",
+                        "Consultoria de cibersegurança para contas empresariais e de influenciadores",
+                        "Criação de artes para Instagram e WhatsApp",
+                        "Mini portfólio ou cardápio digital (PDF/Imagem)",
+                        "Capas de destaque para stories",
+                        "Cartões digitais com QR Code e links (ex: Linktree personalizado)"
+                    ]
+                },
+                {
+                    icon: "📂",
+                    title: "Recuperação de Dados de Computadores e Celulares",
+                    description: "Arquivos perdidos? Trazemos de volta com agilidade.",
+                    services: [
+                        "Recuperação de arquivos excluídos (planilhas e documentos)",
+                        "Recuperação de fotos, vídeos e mensagens (celular)",
+                        "Recuperação de dados após formatação",
+                        "Restauração de fotos danificadas",
+                        "Conversão de fotos analógicas para digital",
+                        "Criação de vídeos com fotos de parentes falecidos"
+                    ]
+                },
+                {
+                    icon: "🧠",
+                    title: "Consultoria Digital Pessoal",
+                    description: "Descomplique sua vida online com soluções práticas, seguras e personalizadas.",
+                    services: [
+                        "Auditoria de presença digital (o que aparece no Google sobre você)",
+                        "Criação de identidade digital (email, assinatura, domínio)",
+                        "Limpeza de rastros digitais (exclusão de contas antigas e vazamentos)",
+                        "Reputação online: como melhorar e manter"
+                    ]
+                },
+                {
+                    icon: "💼",
+                    title: "Ferramentas para Pequenos Negócios",
+                    description: "Soluções simples e poderosas para seu negócio crescer.",
+                    services: [
+                        "Criação de catálogo de produtos em PDF ou site leve",
+                        "Configuração de atendimento automático no WhatsApp",
+                        "Criação de link de pagamento com QR Code (Pix/Cobrança)",
+                        "Sugestão e instalação de apps gratuitos para gestão de vendas",
+                        "Automação de respostas no Instagram e Facebook",
+                        "Mapeamento de processos que estejam gerando gargalo",
+                        "Implementação de melhorias",
+                        "Treinamento de equipes"
+                    ]
+                },
+                {
+                    icon: "📈",
+                    title: "Impulsione Seu Instagram/TikTok",
+                    description: "Destaque seu perfil com estratégias testadas e resultados reais.",
+                    services: [
+                        "Aumento de seguidores",
+                        "Aumento de curtidas",
+                        "Aumento de visualizações",
+                        "Passo a Passo para monetizar",
+                        "Sugestão de hashtags e horários",
+                        "Criação de cronograma de postagens",
+                        "Edição de bio e destaques com linguagem estratégica",
+                        "Geração de ideias de conteúdo com IA (calendário temático)"
+                    ]
+                },
+                {
+                    icon: "🤖",
+                    title: "Inteligência Artificial",
+                    description: "Treinamentos práticos para dominar a IA no seu dia a dia.",
+                    services: [
+                        "Treinamento para alunos",
+                        "Treinamento para professores",
+                        "Treinamento para influenciadores"
+                    ]
+                },
+                {
+                    icon: "📄",
+                    title: "Currículos Personalizados para Cada Vaga",
+                    description: "Aumente suas chances com um currículo pronto para ser escolhido.",
+                    services: [
+                        "Criação ou avaliação de currículo",
+                        "Currículo compatível com a IA da Gupy",
+                        "Currículo compatível com a IA do LinkedIn",
+                        "IA que adapta seu currículo para qualquer vaga"
+                    ]
+                },
+                {
+                    icon: "👥",
+                    title: "Gestão e Análise de Candidatos para Empresas",
+                    description: "Processo seletivo mais rápido e inteligente.",
+                    services: [
+                        "Triagem de currículos",
+                        "Entrevistas preliminares",
+                        "Relatórios de compatibilidade com o perfil da vaga"
+                    ]
+                },
+                {
+                    icon: "🧾",
+                    title: "Documentação Rápida e Profissional",
+                    description: "Documentos prontos com aparência profissional em tempo recorde.",
+                    services: [
+                        "Criação de contratos simples (freelancer, prestação de serviço)",
+                        "Montagem de propostas comerciais em PDF",
+                        "Geração de declarações, recibos e termos",
+                        "Currículo em formato internacional (com carta de apresentação)",
+                        "Formulários automáticos (Google Forms, Typeform)"
+                    ]
+                },
+                {
+                    icon: "🌐",
+                    title: "Criação de Sites e Aplicativos",
+                    description: "Soluções digitais para expandir seu alcance.",
+                    services: [
+                        "Desenvolvimento de sites pessoais e corporativos",
+                        "Criação de aplicativos de agendamentos, delivery, atendimento online e mais"
+                    ]
+                },
+                {
+                    icon: "🤖",
+                    title: "Criação de Chatbots, Agentes de IA e Automações",
+                    description: "Automatize processos e melhore seu atendimento.",
+                    services: [
+                        "Desenvolvimento de chatbots para atendimento",
+                        "Criação de agentes de IA personalizados para qualquer necessidade",
+                        "Automação de postagens em redes sociais",
+                        "Automação residencial",
+                        "Automação de tarefas repetitivas"
+                    ]
+                },
+                {
+                    icon: "🎓",
+                    title: "Criação e Gestão de Cursos",
+                    description: "Transforme seu conhecimento em conteúdo educacional estruturado.",
+                    services: [
+                        "Planejamento de cursos online",
+                        "Produção de materiais didáticos",
+                        "Gestão de plataformas de ensino"
+                    ]
+                },
+                {
+                    icon: "🎙️",
+                    title: "Narrações, Músicas e Anúncios",
+                    description: "Produções de áudio profissionais para qualquer projeto.",
+                    services: [
+                        "Clonagem de qualquer voz",
+                        "Narração para vídeos e anúncios comerciais",
+                        "Produção de jingles e músicas",
+                        "Criação de scripts para anúncios"
+                    ]
+                },
+                {
+                    icon: "🎯",
+                    title: "Cursos e Concursos",
+                    description: "Preparação eficiente para provas e exames importantes.",
+                    services: [
+                        "Material para concursos em vídeo aula e PDF",
+                        "Mapas mentais estruturados para cada material",
+                        "Macetes/dicas de português e matemática",
+                        "Criação de Mapas mentais e Podcast personalizados para seus estudos",
+                        "Material focado no ENEM",
+                        "Material focado no CNU 2025",
+                        "Carteira de Estudante válida em todo país",
+                        "Treinamento para aprender a usar IA nos estudos"
+                    ]
+                },
+                {
+                    icon: "📚",
+                    title: "Criação de Artigos Acadêmicos, TCCs, Revisões e ENEM",
+                    description: "Suporte acadêmico profissional para todos os níveis.",
+                    services: [
+                        "Redação de artigos acadêmicos",
+                        "Redação nota 1000 no ENEM",
+                        "Orientação para TCC",
+                        "Revisão e formatação de textos, TCCs e monografias"
+                    ]
+                },
+                {
+                    icon: "🎬",
+                    title: "Serviços de Streaming",
+                    description: "Acesso às melhores plataformas de entretenimento.",
+                    services: [
+                        "Netflix",
+                        "Amazon",
+                        "MAX",
+                        "Disney Plus",
+                        "Globoplay",
+                        "Premiere",
+                        "Spotify",
+                        "YouTube Premium"
+                    ]
+                },
+                {
+                    icon: "📲 🔞",
+                    title: "Aplicativos Premium",
+                    description: "Desbloqueie recursos avançados dos melhores aplicativos.",
+                    services: [
+                        "CapCut Pro",
+                        "Canva Pro",
+                        "TikTok Premium",
+                        "Instagram Premium",
+                        "WhatsApp Premium"
+                    ]
+                },
+                {
+                    icon: "🎲",
+                    title: "Loteria 🔞",
+                    description: "Aumente suas chances com estratégias e grupos especializados.",
+                    services: [
+                        "Grupo VIP com apostas da Mega-Sena",
+                        "Grupo VIP com apostas da Lotofácil",
+                        "Plataforma de bolões Caixa com mais de 11 mil ganhadores"
+                    ]
+                },
+                {
+                    icon: "👑",
+                    title: "Grupos VIP 🔞",
+                    description: "Acesso exclusivo a conteúdos e comunidades especializadas.",
+                    services: [
+                        "OnlyFans e Privacy",
+                        "Renda Extra",
+                        "Hackers",
+                        "Sala de sinais do 'Tigrinho'"
+                    ]
+                },
+                {
+                    icon: "🔐",
+                    title: "Gestão de Plataforma 🔞(OnlyFans e Privacy)",
+                    description: "Suporte profissional para criadores de conteúdo adulto.",
+                    services: [
+                        "Configuração de perfis OnlyFans",
+                        "Estratégias para produzir conteúdo sem aparecer",
+                        "Gestão de conteúdo e publicações"
+                    ]
+                }            
+            ];
+            
+            // Generate cards for services
+            function generateCards() {
+                const cardsGrid = document.getElementById('cards-grid');
+                
+                categoriesData.forEach((category, categoryIndex) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    
+                    let servicesHTML = '';
+                    category.services.forEach((service, serviceIndex) => {
+                        servicesHTML += `
+                            <div class="service-item" data-category="${categoryIndex}" data-service="${serviceIndex}">
+                                ${service}
+                            </div>
+                        `;
+                    });
+                    
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <div class="category-icon">${category.icon}</div>
+                            <div class="category-title">${category.title}</div>
+                        </div>
+                        <div class="category-description">${category.description}</div>
+                        <div class="services-list">
+                            ${servicesHTML}
                         </div>
                     `;
-                });
-                
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div class="category-icon">${category.icon}</div>
-                        <div class="category-title">${category.title}</div>
-                    </div>
-                    <div class="category-description">${category.description}</div>
-                    <div class="services-list">
-                        ${servicesHTML}
-                    </div>
-                `;
-                
-                cardsGrid.appendChild(card);
-            });
-            
-            // Add event listeners for service items
-            const serviceItems = document.querySelectorAll('.service-item');
-            serviceItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const categoryIndex = item.dataset.category;
-                    const serviceIndex = item.dataset.service;
-                    const categoryName = categoriesData[categoryIndex].title;
-                    const serviceName = categoriesData[categoryIndex].services[serviceIndex];
                     
-                    showModal(categoryName, serviceName);
+                    cardsGrid.appendChild(card);
+                });
+                
+                // Add event listeners for service items
+                const serviceItems = document.querySelectorAll('.service-item');
+                serviceItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const categoryIndex = item.dataset.category;
+                        const serviceIndex = item.dataset.service;
+                        const categoryName = categoriesData[categoryIndex].title;
+                        const serviceName = categoriesData[categoryIndex].services[serviceIndex];
+                        
+                        showModal(categoryName, serviceName);
+                    });
+                });
+            }
+            
+            // Modal handling
+            function showModal(category = '', service = '') {
+                currentCategory = category;
+                currentService = service;
+                modalOverlay.classList.add('active');
+                nameInput.focus();
+            }
+            
+            function hideModal() {
+                modalOverlay.classList.remove('active');
+                nameInput.value = '';
+                couponInput.value = '';
+            }
+            
+            // Handle modal submit
+            submitButton.addEventListener('click', () => {
+                const name = nameInput.value.trim();
+                const coupon = couponInput.value.trim();
+                
+                if (name) {
+                    let whatsappText = `Olá, meu nome é ${name}`;
+                    
+                    if (coupon) {
+                        whatsappText += `, fui indicado por ${coupon}`;
+                    }
+                    
+                    if (currentService) {
+                        whatsappText += `, gostaria de falar sobre ${currentService}`;
+                    } else {
+                        whatsappText += `, preciso de ajuda com um serviço personalizado`;
+                    }
+                    
+                    const whatsappURL = createWhatsAppLink(whatsappText);
+                    
+                    hideModal();
+                    window.open(whatsappURL, '_blank');
+                } else {
+                    // Show validation error
+                    nameInput.style.borderColor = 'red';
+                    nameInput.style.boxShadow = '0 0 0 2px rgba(255, 0, 0, 0.25)';
+                    
+                    setTimeout(() => {
+                        nameInput.style.borderColor = '';
+                        nameInput.style.boxShadow = '';
+                    }, 3000);
+                }
+            });
+            
+            // Handle modal cancel
+            cancelButton.addEventListener('click', hideModal);
+            
+            // Close modal when clicking outside
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    hideModal();
+                }
+            });
+            
+            // Handle "Não encontrou o que precisa?" button
+            contactButton.addEventListener('click', () => {
+                currentCategory = '';
+                currentService = '';
+                showModal();
+            });
+            
+            // Handle Enter key in the name input
+            nameInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitButton.click();
+                }
+            });
+            
+            // Modal para serviços interativos
+            function openServiceModal(service) {
+                const template = document.getElementById(`${service}-template`);
+                if (template) {
+                    intModalContent.innerHTML = '';
+                    intModalContent.appendChild(template.content.cloneNode(true));
+                    
+                    // Inicializar comportamentos específicos do serviço
+                    initServiceBehavior(service);
+                    
+                    // Mostrar o modal com animação
+                    intModalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevenir scroll
+                }
+            }
+            
+            function closeServiceModal() {
+                intModalOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restaurar scroll
+                
+                // Limpar conteúdo do modal após a animação
+                setTimeout(() => {
+                    intModalContent.innerHTML = '';
+                }, 300);
+            }
+            
+            // Event listeners para os modais de serviços interativos
+            intCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const service = this.getAttribute('data-service');
+                    openServiceModal(service);
                 });
             });
-        }
-        
-        // Modal handling
-        const modalOverlay = document.getElementById('modal-overlay');
-        const nameInput = document.getElementById('name-input');
-        const couponInput = document.getElementById('coupon-input');
-        const submitButton = document.getElementById('submit-button');
-        const cancelButton = document.getElementById('cancel-button');
-        const contactButton = document.getElementById('contact-button');
-        
-        let currentService = '';
-        let currentCategory = '';
-        
-        function showModal(category = '', service = '') {
-            currentCategory = category;
-            currentService = service;
-            modalOverlay.classList.add('active');
-            nameInput.focus();
-        }
-        
-        function hideModal() {
-            modalOverlay.classList.remove('active');
-            nameInput.value = '';
-            couponInput.value = '';
-        }
-        
-        // Handle modal submit
-        submitButton.addEventListener('click', () => {
-            const name = nameInput.value.trim();
-            const coupon = couponInput.value.trim();
             
-            if (name) {
-                let whatsappText = `Olá, meu nome é ${name}`;
+            intCloseModal.addEventListener('click', closeServiceModal);
+            
+            intModalOverlay.addEventListener('click', function(event) {
+                if (event.target === intModalOverlay) {
+                    closeServiceModal();
+                }
+            });
+            
+            // Inicializar comportamentos específicos para cada serviço interativo
+            function initServiceBehavior(service) {
+                switch(service) {
+                    case 'password-security':
+                        initPasswordSecurity();
+                        break;
+                    case 'data-leak':
+                        initDataLeak();
+                        break;
+                    case 'learning-profile':
+                        initLearningProfile();
+                        break;
+                    case 'study-quiz':
+                        initStudyQuiz();
+                        break;
+                    case 'social-diagnosis':
+                        initSocialDiagnosis();
+                        break;
+                    case 'content-ideas':
+                        initContentIdeas();
+                        break;
+                    case 'hashtag-check':
+                        initHashtagCheck();
+                        break;
+                    case 'resume-analysis':
+                        initResumeAnalysis();
+                        break;
+                    case 'job-compatibility':
+                        initJobCompatibility();
+                        break;
+                }
+            }
+            
+            // Inicializar cada serviço
+            function initPasswordSecurity() {
+                const form = document.getElementById('password-form');
+                const result = document.getElementById('password-result');
+                const strengthBar = document.getElementById('strength-bar');
+                const strengthText = document.getElementById('strength-text');
+                const crackTime = document.getElementById('crack-time');
+                const whatsappLink = document.getElementById('password-whatsapp');
                 
-                if (coupon) {
-                    whatsappText += `, fui indicado por ${coupon}`;
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const length = parseInt(document.getElementById('password-length').value);
+                    const uppercase = document.getElementById('uppercase').checked;
+                    const lowercase = document.getElementById('lowercase').checked;
+                    const numbers = document.getElementById('numbers').checked;
+                    const symbols = document.getElementById('symbols').checked;
+                    
+                    // Calcular força da senha
+                    let poolSize = 0;
+                    
+                    if (uppercase) poolSize += 26;
+                    if (lowercase) poolSize += 26;
+                    if (numbers) poolSize += 10;
+                    if (symbols) poolSize += 33;
+                    
+                    if (poolSize === 0) {
+                        alert('Selecione pelo menos um tipo de caractere');
+                        return;
+                    }
+                    
+                    // Fórmula simplificada para calcular entropia
+                    const entropy = Math.log2(Math.pow(poolSize, length));
+                    
+                    // Classificar força
+                    let strengthClass = '';
+                    let timeToBreak = '';
+                    let strengthPercentage = 0;
+                    
+                    if (entropy < 28) {
+                        strengthClass = '#FF4D4D';
+                        strengthText.textContent = 'Muito fraca';
+                        strengthText.style.color = '#FF4D4D';
+                        strengthPercentage = 20;
+                        timeToBreak = 'Segundos a minutos';
+                    } else if (entropy < 60) {
+                        strengthClass = '#FFA500';
+                        strengthText.textContent = 'Fraca';
+                        strengthText.style.color = '#FFA500';
+                        strengthPercentage = 40;
+                        timeToBreak = 'Horas a dias';
+                    } else if (entropy < 80) {
+                        strengthClass = '#FFFF00';
+                        strengthText.textContent = 'Razoável';
+                        strengthText.style.color = '#FFFF00';
+                        strengthPercentage = 60;
+                        timeToBreak = 'Semanas a meses';
+                    } else if (entropy < 100) {
+                        strengthClass = '#00BFFF';
+                        strengthText.textContent = 'Forte';
+                        strengthText.style.color = '#00BFFF';
+                        strengthPercentage = 80;
+                        timeToBreak = 'Anos a décadas';
+                    } else {
+                        strengthClass = '#00FF7F';
+                        strengthText.textContent = 'Muito forte';
+                        strengthText.style.color = '#00FF7F';
+                        strengthPercentage = 100;
+                        timeToBreak = 'Séculos ou mais';
+                    }
+                    
+                    // Atualizar barra de progresso
+                    strengthBar.style.backgroundColor = strengthClass;
+                    strengthBar.style.width = `${strengthPercentage}%`;
+                    
+                    // Exibir resultado
+                    crackTime.textContent = timeToBreak;
+                    result.style.display = 'block';
+                    
+                    // Configurar link de WhatsApp
+                    const message = `Olá! Fiz o teste de segurança de senha e obtive o resultado: ${strengthText.textContent} (tempo para quebra: ${timeToBreak}). Gostaria de dicas para uma senha mais segura.`;
+                    whatsappLink.href = createWhatsAppLink(message);
+                });
+            }
+            
+            function initDataLeak() {
+                const emailRadio = document.getElementById('check-email');
+                const cpfRadio = document.getElementById('check-cpf');
+                const emailGroup = document.getElementById('email-input-group');
+                const cpfGroup = document.getElementById('cpf-input-group');
+                const emailInput = document.getElementById('email-input');
+                const cpfInput = document.getElementById('cpf-input');
+                const whatsappLink = document.getElementById('data-leak-whatsapp');
+                
+                // Alternar entre campos de email e CPF
+                emailRadio.addEventListener('change', function() {
+                    emailGroup.style.display = 'block';
+                    cpfGroup.style.display = 'none';
+                });
+                
+                cpfRadio.addEventListener('change', function() {
+                    emailGroup.style.display = 'none';
+                    cpfGroup.style.display = 'block';
+                });
+                
+                // Máscara para CPF
+                cpfInput.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    if (value.length > 11) {
+                        value = value.substring(0, 11);
+                    }
+                    
+                    if (value.length > 9) {
+                        this.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+                    } else if (value.length > 6) {
+                        this.value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+                    } else if (value.length > 3) {
+                        this.value = value.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+                    } else {
+                        this.value = value;
+                    }
+                });
+                
+                // Preparar link de WhatsApp
+                whatsappLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    let info;
+                    let type;
+                    
+                    if (emailRadio.checked) {
+                        info = emailInput.value.trim();
+                        type = 'e-mail';
+                        
+                        if (!info || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(info)) {
+                            alert('Por favor, insira um e-mail válido.');
+                            return;
+                        }
+                    } else {
+                        info = cpfInput.value.trim();
+                        type = 'CPF';
+                        
+                        // Remover formatação para validação
+                        const cpfDigits = info.replace(/\D/g, '');
+                        if (!cpfDigits || cpfDigits.length !== 11) {
+                            alert('Por favor, insira um CPF válido.');
+                            return;
+                        }
+                    }
+                    
+                    const message = `Olá! Gostaria de verificar se meu ${type} (${info}) apareceu em algum vazamento de dados recente.`;
+                    window.open(createWhatsAppLink(message), '_blank');
+                });
+            }
+            
+            function initLearningProfile() {
+                const questions = document.querySelectorAll('#learning-quiz-container .question');
+                const prevButton = document.getElementById('prev-question');
+                const nextButton = document.getElementById('next-question');
+                const quizContainer = document.getElementById('learning-quiz-container');
+                const resultContainer = document.getElementById('learning-result');
+                const profileType = document.getElementById('learning-profile-type');
+                const profileDescription = document.getElementById('learning-profile-description');
+                const whatsappLink = document.getElementById('learning-whatsapp');
+                
+                let currentQuestion = 1;
+                const answers = {
+                    visual: 0,
+                    auditory: 0,
+                    kinesthetic: 0
+                };
+                
+                // Selecionar opção de quiz
+                document.querySelectorAll('#learning-quiz-container .quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Remover seleção anterior
+                        const options = this.parentElement.querySelectorAll('.quiz-option');
+                        options.forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        
+                        // Selecionar esta opção
+                        this.classList.add('selected');
+                    });
+                });
+                
+                // Navegação entre questões
+                prevButton.addEventListener('click', function() {
+                    if (currentQuestion > 1) {
+                        questions.forEach(q => q.style.display = 'none');
+                        currentQuestion--;
+                        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+                        
+                        if (currentQuestion === 1) {
+                            prevButton.style.display = 'none';
+                        }
+                        
+                        nextButton.innerHTML = 'Próxima <i class="fas fa-arrow-right"></i>';
+                    }
+                });
+                
+                nextButton.addEventListener('click', function() {
+                    const currentQuestionElement = document.querySelector(`[data-question="${currentQuestion}"]`);
+                    const selectedOption = currentQuestionElement.querySelector('.quiz-option.selected');
+                    
+                    if (!selectedOption) {
+                        alert('Por favor, selecione uma opção antes de continuar.');
+                        return;
+                    }
+                    
+                    // Registrar resposta
+                    const type = selectedOption.getAttribute('data-type');
+                    answers[type]++;
+                    
+                    if (currentQuestion < questions.length) {
+                        questions.forEach(q => q.style.display = 'none');
+                        currentQuestion++;
+                        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+                        
+                        prevButton.style.display = 'block';
+                        
+                        if (currentQuestion === questions.length) {
+                            nextButton.innerHTML = 'Ver Resultado <i class="fas fa-check"></i>';
+                        }
+                    } else {
+                        // Mostrar resultado
+                        showLearningResult();
+                    }
+                });
+                
+                function showLearningResult() {
+                    // Determinar perfil predominante
+                    let maxType = 'visual';
+                    let maxValue = answers.visual;
+                    
+                    if (answers.auditory > maxValue) {
+                        maxType = 'auditory';
+                        maxValue = answers.auditory;
+                    }
+                    
+                    if (answers.kinesthetic > maxValue) {
+                        maxType = 'kinesthetic';
+                    }
+                    
+                    // Configurar resultado
+                    let typeName, typeDesc;
+                    
+                    switch (maxType) {
+                        case 'visual':
+                            typeName = 'Visual';
+                            typeDesc = 'Você aprende melhor vendo e observando. Gráficos, diagramas, vídeos e texto escrito são ideais para seu aprendizado. Tente usar mapas mentais, destacar textos com cores diferentes e visualizar conceitos.';
+                            break;
+                        case 'auditory':
+                            typeName = 'Auditivo';
+                            typeDesc = 'Você aprende melhor ouvindo. Discussões, podcasts, audiobooks e explicações verbais funcionam bem para você. Tente gravar aulas, explicar conceitos em voz alta e participar de grupos de estudo.';
+                            break;
+                        case 'kinesthetic':
+                            typeName = 'Cinestésico';
+                            typeDesc = 'Você aprende melhor fazendo e experimentando. Atividades práticas, simulações e estudos de caso são ideais para você. Tente associar movimentos a conceitos, usar objetos físicos e fazer pausas frequentes durante o estudo.';
+                            break;
+                    }
+                    
+                    profileType.textContent = typeName;
+                    profileDescription.textContent = typeDesc;
+                    
+                    // Configurar link de WhatsApp
+                    const message = `Olá! Fiz o teste de perfil de aprendizado e descobri que sou predominantemente ${typeName}. Gostaria de receber conteúdos específicos para esse perfil.`;
+                    whatsappLink.href = createWhatsAppLink(message);
+                    
+                    // Mostrar resultado
+                    quizContainer.style.display = 'none';
+                    resultContainer.style.display = 'block';
+                }
+            }
+            
+            function initStudyQuiz() {
+                const questions = document.querySelectorAll('#study-quiz-container .question');
+                const prevButton = document.getElementById('study-prev-question');
+                const nextButton = document.getElementById('study-next-question');
+                const quizContainer = document.getElementById('study-quiz-container');
+                const resultContainer = document.getElementById('study-result');
+                const profileType = document.getElementById('study-profile-type');
+                const profileDescription = document.getElementById('study-profile-description');
+                const whatsappLink = document.getElementById('study-whatsapp');
+                
+                let currentQuestion = 1;
+                const answers = {};
+                
+                // Selecionar opção de quiz
+                document.querySelectorAll('#study-quiz-container .quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Remover seleção anterior
+                        const options = this.parentElement.querySelectorAll('.quiz-option');
+                        options.forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        
+                        // Selecionar esta opção
+                        this.classList.add('selected');
+                    });
+                });
+                
+                // Navegação entre questões
+                prevButton.addEventListener('click', function() {
+                    if (currentQuestion > 1) {
+                        questions.forEach(q => q.style.display = 'none');
+                        currentQuestion--;
+                        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+                        
+                        if (currentQuestion === 1) {
+                            prevButton.style.display = 'none';
+                        }
+                        
+                        nextButton.innerHTML = 'Próxima <i class="fas fa-arrow-right"></i>';
+                    }
+                });
+                
+                nextButton.addEventListener('click', function() {
+                    const currentQuestionElement = document.querySelector(`[data-question="${currentQuestion}"]`);
+                    const selectedOption = currentQuestionElement.querySelector('.quiz-option.selected');
+                    
+                    if (!selectedOption) {
+                        alert('Por favor, selecione uma opção antes de continuar.');
+                        return;
+                    }
+                    
+                    // Registrar resposta
+                    const type = selectedOption.getAttribute('data-type');
+                    answers[currentQuestion] = type;
+                    
+                    if (currentQuestion < questions.length) {
+                        questions.forEach(q => q.style.display = 'none');
+                        currentQuestion++;
+                        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+                        
+                        prevButton.style.display = 'block';
+                        
+                        if (currentQuestion === questions.length) {
+                            nextButton.innerHTML = 'Ver Resultado <i class="fas fa-check"></i>';
+                        }
+                    } else {
+                        // Mostrar resultado
+                        showStudyResult();
+                    }
+                });
+                
+                function showStudyResult() {
+                    // Perfis de estudo simplificados
+                    const profiles = {
+                        'Organizador Estratégico': {
+                            desc: 'Você se beneficia de um plano de estudos estruturado com metas claras. Crie cronogramas detalhados, use métodos como Pomodoro (25min estudo, 5min descanso) e revise regularmente o conteúdo para maximizar seu aprendizado.'
+                        },
+                        'Estudante Prático': {
+                            desc: 'Você aprende melhor aplicando o conhecimento. Resolva muitos exercícios, ensine o conteúdo para outras pessoas e busque exemplos práticos do mundo real. Estude em ambientes que permitam experimentação.'
+                        },
+                        'Aprendiz Social': {
+                            desc: 'Grupos de estudo e discussões são seu forte. Participe de comunidades online sobre os temas, explique o conteúdo para colegas e busque cursos interativos. A troca de ideias acelera seu aprendizado.'
+                        },
+                        'Estudante Flexível': {
+                            desc: 'Você se adapta bem a diferentes métodos. Varie seus ambientes de estudo, alterne entre leitura, vídeos e exercícios práticos. Use técnicas como mapas mentais para conectar conceitos de formas diferentes.'
+                        },
+                        'Maratonista Focado': {
+                            desc: 'Você prefere sessões longas e imersivas. Crie um ambiente livre de distrações, utilize técnicas de foco profundo e priorize qualidade sobre quantidade. Estabeleça blocos de tempo dedicados exclusivamente ao estudo.'
+                        }
+                    };
+                    
+                    // Algoritmo simplificado para determinar perfil
+                    let profileName;
+                    
+                    if (answers[1] === 'planner' && (answers[3] === 'systematic' || answers[5] === 'notes')) {
+                        profileName = 'Organizador Estratégico';
+                    } else if (answers[3] === 'practical' || answers[5] === 'teach') {
+                        profileName = 'Estudante Prático';
+                    } else if (answers[1] === 'social' || answers[2] === 'ambient') {
+                        profileName = 'Aprendiz Social';
+                    } else if (answers[2] === 'flexible' || answers[3] === 'irregular') {
+                        profileName = 'Estudante Flexível';
+                    } else {
+                        profileName = 'Maratonista Focado';
+                    }
+                    
+                    const profile = profiles[profileName];
+                    
+                    profileType.textContent = profileName;
+                    profileDescription.textContent = profile.desc;
+                    
+                    // Configurar link de WhatsApp
+                    const message = `Olá! Fiz o quiz sobre como estudo melhor e meu perfil é: ${profileName}. Gostaria de ajuda e dicas para otimizar meus estudos com base nesse perfil.`;
+                    whatsappLink.href = createWhatsAppLink(message);
+                    
+                    // Mostrar resultado
+                    quizContainer.style.display = 'none';
+                    resultContainer.style.display = 'block';
+                }
+            }
+            
+            function initSocialDiagnosis() {
+                const instagramRadio = document.getElementById('instagram-profile');
+                const tiktokRadio = document.getElementById('tiktok-profile');
+                const profileUrl = document.getElementById('profile-url');
+                const whatsappLink = document.getElementById('social-diagnosis-whatsapp');
+                
+                // Alternar placeholder baseado na rede selecionada
+                instagramRadio.addEventListener('change', function() {
+                    profileUrl.placeholder = 'https://www.instagram.com/seuusuario';
+                });
+                
+                tiktokRadio.addEventListener('change', function() {
+                    profileUrl.placeholder = 'https://www.tiktok.com/@seuusuario';
+                });
+                
+                // Preparar link de WhatsApp
+                whatsappLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const url = profileUrl.value.trim();
+                    const platform = instagramRadio.checked ? 'Instagram' : 'TikTok';
+                    
+                    if (!url) {
+                        alert('Por favor, insira o link do seu perfil.');
+                        return;
+                    }
+                    
+                    // Validação básica de URL
+                    if (!(url.includes('instagram.com') || url.includes('tiktok.com'))) {
+                        alert('Por favor, insira um link válido de perfil de Instagram ou TikTok.');
+                        return;
+                    }
+                    
+                    const message = `Olá! Gostaria de solicitar um diagnóstico gratuito do meu perfil de ${platform}: ${url}`;
+                    window.open(createWhatsAppLink(message), '_blank');
+                });
+            }
+            
+            function initContentIdeas() {
+                const form = document.getElementById('content-ideas-form');
+                const nicheInput = document.getElementById('content-niche');
+                const result = document.getElementById('content-ideas-result');
+                const ideasList = document.getElementById('ideas-list');
+                const whatsappLink = document.getElementById('content-ideas-whatsapp');
+                
+                // Banco de ideias pré-cadastradas para diferentes nichos
+                const nicheIdeas = {
+                    'moda': [
+                        '5 peças essenciais para o seu guarda-roupa cápsula',
+                        'Como montar looks diferentes com as mesmas peças',
+                        'Tendências que estão bombando para a próxima estação',
+                        'Dicas para comprar roupas de qualidade gastando menos',
+                        'Como adaptar tendências internacionais ao seu estilo pessoal'
+                    ],
+                    'fitness': [
+                        'Treino rápido de 15 minutos para fazer em casa',
+                        'Mitos e verdades sobre nutrição esportiva',
+                        '5 exercícios para fortalecer o core sem equipamentos',
+                        'Como montar sua própria planilha de treinos',
+                        'Receitas de pré e pós-treino para maximizar resultados'
+                    ],
+                    'finanças': [
+                        'Como começar a investir com apenas R$100 por mês',
+                        '5 apps que vão transformar sua vida financeira',
+                        'Passo a passo para criar um orçamento que funciona',
+                        'Dicas para economizar nas compras do dia a dia',
+                        'Erros financeiros que impedem você de prosperar'
+                    ],
+                    'culinária': [
+                        'Receitas deliciosas com apenas 5 ingredientes',
+                        'Como preparar marmitas para a semana toda em 2 horas',
+                        'Segredos de chef para deixar seus pratos mais saborosos',
+                        'Versões saudáveis de comidas de fast-food',
+                        'Guia completo de temperos e suas combinações'
+                    ],
+                    'marketing': [
+                        'Como criar títulos irresistíveis para suas postagens',
+                        '5 estratégias de marketing digital para pequenos negócios',
+                        'Dicas para usar o Instagram Stories para vender mais',
+                        'Gatilhos mentais que aumentam suas conversões',
+                        'Como criar uma identidade visual consistente'
+                    ],
+                    'educação': [
+                        'Técnicas de memorização para aprender qualquer coisa',
+                        'Como criar um ambiente de estudos produtivo',
+                        '5 métodos para ensinar conceitos complexos de forma simples',
+                        'Ferramentas gratuitas para criar material didático interativo',
+                        'Dicas para manter alunos engajados em aulas online'
+                    ],
+                    'tecnologia': [
+                        'Apps essenciais que vão aumentar sua produtividade',
+                        'Como proteger seus dados digitais em 5 passos',
+                        'Novidades tecnológicas que vão revolucionar o mercado',
+                        'Guia básico de inteligência artificial para iniciantes',
+                        'Dicas para otimizar a bateria do seu smartphone'
+                    ],
+                    'beleza': [
+                        'Rotina de skincare minimalista para pele perfeita',
+                        '5 formas de usar o mesmo produto de maquiagem',
+                        'Como cuidar dos cabelos em casa como um profissional',
+                        'Erros comuns na maquiagem e como evitá-los',
+                        'Produtos multifuncionais que toda pessoa deveria ter'
+                    ]
+                };
+                
+                // Ideas padrão para nichos não mapeados
+                const defaultIdeas = [
+                    'Guia do iniciante: conceitos básicos para quem está começando',
+                    'Top 5 tendências que estão transformando o mercado',
+                    'Como superar os desafios comuns na sua área',
+                    'Ferramentas essenciais que todo profissional deveria conhecer',
+                    'Perguntas frequentes: respondendo as dúvidas mais comuns'
+                ];
+                
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const niche = nicheInput.value.trim().toLowerCase();
+                    
+                    if (!niche) {
+                        alert('Por favor, insira seu nicho.');
+                        return;
+                    }
+                    
+                    // Limpar lista anterior
+                    ideasList.innerHTML = '';
+                    
+                    // Encontrar o nicho mais próximo do input do usuário
+                    let matchedNiche = null;
+                    let bestMatch = 0;
+                    
+                    for (const key in nicheIdeas) {
+                        if (niche.includes(key) || key.includes(niche)) {
+                            const matchLength = Math.min(key.length, niche.length);
+                            if (matchLength > bestMatch) {
+                                bestMatch = matchLength;
+                                matchedNiche = key;
+                            }
+                        }
+                    }
+                    
+                    // Selecionar ideias apropriadas
+                    const ideas = matchedNiche ? nicheIdeas[matchedNiche] : defaultIdeas;
+                    
+                    // Preencher lista de ideias
+                    ideas.forEach(idea => {
+                        const li = document.createElement('li');
+                        li.textContent = idea;
+                        li.style.marginBottom = '0.8rem';
+                        ideasList.appendChild(li);
+                    });
+                    
+                    // Configurar link de WhatsApp
+                    const message = `Olá! Acabei de ver 5 ideias para meu nicho de ${niche} e gostaria de receber mais ideias personalizadas.`;
+                    whatsappLink.href = createWhatsAppLink(message);
+                    
+                    // Mostrar resultado
+                    result.style.display = 'block';
+                });
+            }
+            
+            function initHashtagCheck() {
+                const form = document.getElementById('hashtag-check-form');
+                const nicheInput = document.getElementById('hashtag-niche');
+                const result = document.getElementById('hashtag-result');
+                const hashtagsContainer = document.getElementById('hashtags-container');
+                const bestTimes = document.getElementById('best-times');
+                const whatsappLink = document.getElementById('hashtag-whatsapp');
+                
+                // Banco de hashtags e horários pré-cadastrados para diferentes nichos
+                const nicheData = {
+                    'moda': {
+                        hashtags: ['#fashion', '#style', '#outfit', '#ootd', '#lookdodia', '#modabrasil', '#tendencia', '#estilo', '#modafeminina', '#modamasculina'],
+                        times: ['Terça-feira às 11h e 17h', 'Quinta-feira às 15h', 'Sábado às 10h']
+                    },
+                    'fitness': {
+                        hashtags: ['#fitness', '#workout', '#treino', '#academia', '#vidasaudavel', '#fitnessmotivation', '#treinoemcasa', '#foco', '#musculacao', '#saude'],
+                        times: ['Segunda-feira às 8h e 18h', 'Quarta-feira às 16h', 'Sexta-feira às 7h']
+                    },
+                    'finanças': {
+                        hashtags: ['#financas', '#investimentos', '#dinheiro', '#economia', '#financaspessoais', '#rendaextra', '#educacaofinanceira', '#independenciafinanceira', '#investidor', '#mercadofinanceiro'],
+                        times: ['Segunda-feira às 10h', 'Terça-feira às 13h', 'Quinta-feira às 19h']
+                    },
+                    'culinária': {
+                        hashtags: ['#receita', '#gastronomia', '#comidacaseira', '#food', '#cozinhaemcasa', '#culinariabrasileira', '#foodporn', '#instafood', '#Chef', '#comidasaudavel'],
+                        times: ['Domingo às 9h e 17h', 'Quarta-feira às 12h', 'Sexta-feira às 16h']
+                    },
+                    'marketing': {
+                        hashtags: ['#marketing', '#empreendedorismo', '#digitalmarketing', '#marketingdigital', '#socialmedia', '#redessociais', '#business', '#marketingstrategy', '#empreender', '#vendas'],
+                        times: ['Segunda-feira às 13h', 'Quarta-feira às 11h', 'Quinta-feira às 15h']
+                    },
+                    'educação': {
+                        hashtags: ['#educacao', '#estudos', '#aprendizado', '#conhecimento', '#estudar', '#escola', '#professor', '#ensinar', '#concursopublico', '#vestibular'],
+                        times: ['Segunda-feira às 9h', 'Quarta-feira às 15h', 'Domingo às 20h']
+                    },
+                    'tecnologia': {
+                        hashtags: ['#tecnologia', '#tech', '#inovacao', '#programacao', '#developer', '#coding', '#software', '#inteligenciaartificial', '#hardware', '#computacao'],
+                        times: ['Terça-feira às 12h', 'Quinta-feira às 16h', 'Sexta-feira às 10h']
+                    },
+                    'beleza': {
+                        hashtags: ['#beleza', '#makeup', '#maquiagem', '#skincare', '#beauty', '#cabelo', '#cuidadoscomapele', '#dicasdebeleza', '#unhas', '#hairstyle'],
+                        times: ['Segunda-feira às 20h', 'Quarta-feira às 12h', 'Sábado às 11h']
+                    }
+                };
+                
+                // Dados padrão para nichos não mapeados
+                const defaultData = {
+                    hashtags: ['#dicas', '#trending', '#conteudooriginal', '#brasil', '#dicasuteis', '#sucesso', '#aprendizado', '#crescimento', '#inspiracao', '#comunidade'],
+                    times: ['Terça e Quinta às 12h e 18h', 'Segunda e Quarta às 8h', 'Sábado às 11h']
+                };
+                
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const niche = nicheInput.value.trim().toLowerCase();
+                    
+                    if (!niche) {
+                        alert('Por favor, insira seu nicho.');
+                        return;
+                    }
+                    
+                    // Limpar conteúdo anterior
+                    hashtagsContainer.innerHTML = '';
+                    bestTimes.innerHTML = '';
+                    
+                    // Encontrar o nicho mais próximo do input do usuário
+                    let matchedNiche = null;
+                    let bestMatch = 0;
+                    
+                    for (const key in nicheData) {
+                        if (niche.includes(key) || key.includes(niche)) {
+                            const matchLength = Math.min(key.length, niche.length);
+                            if (matchLength > bestMatch) {
+                                bestMatch = matchLength;
+                                matchedNiche = key;
+                            }
+                        }
+                    }
+                    
+                    // Selecionar dados apropriados
+                    const data = matchedNiche ? nicheData[matchedNiche] : defaultData;
+                    
+                    // Preencher hashtags
+                    data.hashtags.forEach(hashtag => {
+                        const tag = document.createElement('span');
+                        tag.textContent = hashtag;
+                        tag.className = 'hashtag';
+                        hashtagsContainer.appendChild(tag);
+                    });
+                    
+                    // Preencher melhores horários
+                    data.times.forEach(time => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<i class="far fa-clock" style="margin-right: 0.5rem;"></i> ${time}`;
+                        li.style.padding = '0.5rem 0';
+                        bestTimes.appendChild(li);
+                    });
+                    
+                    // Configurar link de WhatsApp
+                    const message = `Olá! Verifiquei as hashtags e melhores horários para meu nicho de ${niche} e gostaria de ajuda para melhorar meu alcance.`;
+                    whatsappLink.href = createWhatsAppLink(message);
+                    
+                    // Mostrar resultado
+                    result.style.display = 'block';
+                });
+            }
+            
+            function initResumeAnalysis() {
+                const fileInput = document.getElementById('resume-file');
+                const selectedFile = document.getElementById('selected-file');
+                const fileName = document.getElementById('file-name');
+                const removeFile = document.getElementById('remove-file');
+                const whatsappLink = document.getElementById('resume-analysis-whatsapp');
+                
+                // Manipular seleção de arquivo
+                fileInput.addEventListener('change', function() {
+                    if (this.files.length > 0) {
+                        const file = this.files[0];
+                        
+                        // Verificar se é um PDF
+                        if (file.type !== 'application/pdf') {
+                            alert('Por favor, selecione um arquivo PDF.');
+                            this.value = '';
+                            return;
+                        }
+                        
+                        // Exibir nome do arquivo
+                        fileName.textContent = file.name;
+                        selectedFile.style.display = 'block';
+                        
+                        // Ativar botão de WhatsApp
+                        whatsappLink.style.opacity = '1';
+                        whatsappLink.style.pointerEvents = 'auto';
+                    }
+                });
+                
+                // Remover arquivo
+                removeFile.addEventListener('click', function() {
+                    fileInput.value = '';
+                    selectedFile.style.display = 'none';
+                    whatsappLink.style.opacity = '0.5';
+                    whatsappLink.style.pointerEvents = 'none';
+                });
+                
+                // Preparar link de WhatsApp
+                whatsappLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (fileInput.files.length === 0) {
+                        alert('Por favor, selecione um arquivo PDF.');
+                        return;
+                    }
+                    
+                    const message = `Olá! Gostaria de solicitar uma análise gratuita do meu currículo. Enviarei o arquivo PDF em seguida.`;
+                    window.open(createWhatsAppLink(message), '_blank');
+                });
+            }
+            
+            function initJobCompatibility() {
+                const fileInput = document.getElementById('job-resume-file');
+                const selectedFile = document.getElementById('job-selected-file');
+                const fileName = document.getElementById('job-file-name');
+                const removeFile = document.getElementById('job-remove-file');
+                const jobUrl = document.getElementById('job-url');
+                const whatsappLink = document.getElementById('job-compatibility-whatsapp');
+                
+                // Manipular seleção de arquivo
+                fileInput.addEventListener('change', function() {
+                    if (this.files.length > 0) {
+                        const file = this.files[0];
+                        
+                        // Verificar se é um PDF
+                        if (file.type !== 'application/pdf') {
+                            alert('Por favor, selecione um arquivo PDF.');
+                            this.value = '';
+                            return;
+                        }
+                        
+                        // Exibir nome do arquivo
+                        fileName.textContent = file.name;
+                        selectedFile.style.display = 'block';
+                        
+                        // Verificar se pode ativar o botão
+                        checkWhatsAppButton();
+                    }
+                });
+                
+                // Remover arquivo
+                removeFile.addEventListener('click', function() {
+                    fileInput.value = '';
+                    selectedFile.style.display = 'none';
+                    whatsappLink.style.opacity = '0.5';
+                    whatsappLink.style.pointerEvents = 'none';
+                });
+                
+                // Verificar URL da vaga
+                jobUrl.addEventListener('input', function() {
+                    checkWhatsAppButton();
+                });
+                
+                // Verificar se ambos arquivo e URL foram fornecidos
+                function checkWhatsAppButton() {
+                    if (fileInput.files.length > 0 && jobUrl.value.trim() !== '') {
+                        whatsappLink.style.opacity = '1';
+                        whatsappLink.style.pointerEvents = 'auto';
+                    } else {
+                        whatsappLink.style.opacity = '0.5';
+                        whatsappLink.style.pointerEvents = 'none';
+                    }
                 }
                 
-                if (currentService) {
-                    whatsappText += `, gostaria de falar sobre ${currentService}`;
-                } else {
-                    whatsappText += `, preciso de ajuda com um serviço personalizado`;
-                }
-                
-                const whatsappURL = `https://wa.me/5584999463887?text=${encodeURIComponent(whatsappText)}`;
-                
-                hideModal();
-                window.open(whatsappURL, '_blank');
-            } else {
-                // Show validation error
-                nameInput.style.borderColor = 'red';
-                nameInput.style.boxShadow = '0 0 0 2px rgba(255, 0, 0, 0.25)';
-                
-                setTimeout(() => {
-                    nameInput.style.borderColor = '';
-                    nameInput.style.boxShadow = '';
-                }, 3000);
+                // Preparar link de WhatsApp
+                whatsappLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (fileInput.files.length === 0) {
+                        alert('Por favor, selecione um arquivo PDF.');
+                        return;
+                    }
+                    
+                    const url = jobUrl.value.trim();
+                    if (!url) {
+                        alert('Por favor, insira o link da vaga.');
+                        return;
+                    }
+                    
+                    const message = `Olá! Gostaria de solicitar uma avaliação de compatibilidade para a vaga: ${url}. Enviarei meu currículo em PDF em seguida.`;
+                    window.open(createWhatsAppLink(message), '_blank');
+                });
             }
-        });
-        
-        // Handle modal cancel
-        cancelButton.addEventListener('click', hideModal);
-        
-        // Close modal when clicking outside
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                hideModal();
+            
+            // Debounce function to limit resize event frequency
+            function debounce(func, wait) {
+                let timeout;
+                return function() {
+                    const context = this;
+                    const args = arguments;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), wait);
+                };
             }
-        });
-        
-        // Handle "Não encontrou o que precisa?" button
-        contactButton.addEventListener('click', () => {
-            currentCategory = '';
-            currentService = '';
-            showModal();
-        });
-        
-        // Handle Enter key in the name input
-        nameInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                submitButton.click();
-            }
-        });
-        
-        // Debounce function to limit resize event frequency
-        function debounce(func, wait) {
-            let timeout;
-            return function() {
-                const context = this;
-                const args = arguments;
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(context, args), wait);
-            };
-        }
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Initialize
             generateCircuits();
             generateCards();
+            
+            // Debounced resize event
+            window.addEventListener('resize', debounce(generateCircuits, 250));
         });
-        
-        // Debounced resize event
-        window.addEventListener('resize', debounce(generateCircuits, 250));
     </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body></html>
